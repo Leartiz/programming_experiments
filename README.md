@@ -1,4 +1,4 @@
 # Programming experiments 🎲
 
 ## cpp 
-[here](./cpp/some/NOTE.md)
+- some [here](./cpp/some/NOTE.md)
