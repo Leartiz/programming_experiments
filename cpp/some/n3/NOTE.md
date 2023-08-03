@@ -4,7 +4,7 @@
 
 ## Visualization
 
-### Example
+### Example (with errors?)
 ```
 [1, 2, 3] -> 2
 
