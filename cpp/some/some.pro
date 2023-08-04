@@ -6,4 +6,5 @@ SUBDIRS += \
     n3 \
     n4 \
     n5 \
-    n6
+    n6 \
+    n7

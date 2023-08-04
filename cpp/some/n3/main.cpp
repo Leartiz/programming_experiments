@@ -2,7 +2,7 @@
 #include <iostream>
 #include <cassert>
 
-class Solution final
+class NotSolution final
 {
 public:
     std::vector<std::vector<int>> combinationSum(const std::vector<int>& candidates, int target) {
@@ -45,7 +45,7 @@ void printMx(const std::vector<std::vector<int>>& mx)
 
 int main()
 {
-    Solution s;
+    NotSolution s;
     printMx(s.combinationSum({ 1, 2, 3 }, 2));
 
     {

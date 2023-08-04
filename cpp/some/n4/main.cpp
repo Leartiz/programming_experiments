@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 
-class Solution {
+class NotSolution {
 public:
     int missingNumber(const std::vector<int>& nums) {
         int result{ 0 };
@@ -26,7 +26,7 @@ int main()
     }
 
     // tests
-    Solution s;
+    NotSolution s;
     {
         assert(s.missingNumber({1, 2, 3}) == 0);
         // res         nums[i]      i
