@@ -1,4 +1,4 @@
-## n1 - trying to use `context.*` in mock routine
+## n1 - `context.*` in mock routine
 
 - implementation [here](./exec.go)
 

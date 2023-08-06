@@ -1,4 +1,4 @@
-## n2 - trying to use `context.*` on web request
+## n2 - `context.*` on web request
 
 - implementation [here](./exec.go)
 
