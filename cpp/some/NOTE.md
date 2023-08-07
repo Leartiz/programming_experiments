@@ -13,3 +13,5 @@
 - n11 - problem analysis [338. Counting Bits](https://leetcode.com/problems/counting-bits/) from leet-code [here](./n11/NOTE.md)
 - n12 - problem analysis [121. Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/) from leet-code [here](./n12/NOTE.md)
 - n13 - problem analysis [448. Find All Numbers Disappeared in an Array](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/) from leet-code [here](./n13/NOTE.md)
+- n14 - problem analysis [392. Is Subsequence](https://leetcode.com/problems/is-subsequence/) from leet-code [here](./n14/NOTE.md)
+- n15 - problem analysis [746. Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/) from leet-code [here](./n15/NOTE.md)
