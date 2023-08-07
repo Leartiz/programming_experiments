@@ -12,3 +12,4 @@
 - n10 - problem analysis [219. Contains Duplicate II](https://leetcode.com/problems/contains-duplicate-ii/) from leet-code [here](./n10/NOTE.md)
 - n11 - problem analysis [338. Counting Bits](https://leetcode.com/problems/counting-bits/) from leet-code [here](./n11/NOTE.md)
 - n12 - problem analysis [121. Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/) from leet-code [here](./n12/NOTE.md)
+- n13 - problem analysis [448. Find All Numbers Disappeared in an Array](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/) from leet-code [here](./n13/NOTE.md)
