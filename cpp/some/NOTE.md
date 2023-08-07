@@ -7,3 +7,6 @@
 - n5 - tree with no limit on node count [here](./n5/NOTE.md)
 - n6 - problem analysis [572. Subtree of Another Tree](https://leetcode.com/problems/subtree-of-another-tree/) from leet-code [here](./n6/NOTE.md)
 - n7 - problem analysis [238. Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/) from leet-code [here](./n7/NOTE.md)
+- n8 -
+- n9 -
+- n10 - problem analysis [219. Contains Duplicate II](https://leetcode.com/problems/contains-duplicate-ii/) from leet-code [here](./n10/NOTE.md)

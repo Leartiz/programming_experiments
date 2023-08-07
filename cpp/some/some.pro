@@ -2,6 +2,7 @@ TEMPLATE = subdirs
 
 SUBDIRS += \
     n1 \
+    n10 \
     n2 \
     n3 \
     n4 \
