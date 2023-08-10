@@ -16,7 +16,7 @@ int main()
 
     const QMetaObject* pmo = mc.metaObject();
     for (int i = 0; i < pmo->propertyCount(); ++i) {
-        const auto mp = pmo->property(i);
+        const QMetaProperty mp = pmo->property(i);
         qDebug() << "Property #" << i;
         qDebug() << "Type:" << mp.typeName();
         qDebug() << "Name:" << mp.name();
