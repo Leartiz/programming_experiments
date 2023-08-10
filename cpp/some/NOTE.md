@@ -15,3 +15,4 @@
 - n13 - problem analysis [448. Find All Numbers Disappeared in an Array](https://leetcode.com/problems/find-all-numbers-disappeared-in-an-array/) from leet-code [here](./n13/NOTE.md)
 - n14 - problem analysis [392. Is Subsequence](https://leetcode.com/problems/is-subsequence/) from leet-code [here](./n14/NOTE.md)
 - n15 - problem analysis [746. Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/) from leet-code [here](./n15/NOTE.md)
+- n16 - problem analysis [292. Nim Game](https://leetcode.com/problems/nim-game/) from leet-code [here](./n16/NOTE.md)
