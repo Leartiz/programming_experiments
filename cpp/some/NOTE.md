@@ -3,7 +3,9 @@
 - n1 - `std::rotate` algorithm analysis [here](./n1/NOTE.md)
 - n2 - trying to use `std::iter_swap` [here](./n2/NOTE.md)
 - n5 - tree with no limit on node count [here](./n5/NOTE.md)
-- n18 - trying to use `std::string:: reserve, resize` [here](./n18/NOTE.md)
+- n18 - trying to use `std::string:: reserve, resize` #1 [here](./n18/NOTE.md)
+- n19 -
+- n20 - trying to use `std::string:: reserve, resize` #2 [here](./n20/NOTE.md)
 
 # tasks
 
