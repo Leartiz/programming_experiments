@@ -22,7 +22,9 @@
 - n14 - problem analysis [392. Is Subsequence](https://leetcode.com/problems/is-subsequence/) from leet-code [here](./n14/NOTE.md)
 - n15 - problem analysis [746. Min Cost Climbing Stairs](https://leetcode.com/problems/min-cost-climbing-stairs/) from leet-code [here](./n15/NOTE.md)
 - n16 - problem analysis [292. Nim Game](https://leetcode.com/problems/nim-game/) from leet-code [here](./n16/NOTE.md)
+- n21 - problem analysis [326. Power of Three](https://leetcode.com/problems/power-of-three/) from leet-code [here](./n21/NOTE.md)
 
 # + Qt
 
 - n17 - trying to use `Q_PROPERTY, QMetaObject, QMetaProperty` [here](./n17/NOTE.md)
+- n22 - trying to use `private slots, protected slots, public slots` [here](./n22/NOTE.md)
