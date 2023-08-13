@@ -28,3 +28,4 @@
 
 - n17 - trying to use `Q_PROPERTY, QMetaObject, QMetaProperty` [here](./n17/NOTE.md)
 - n22 - trying to use `private slots, protected slots, public slots` [here](./n22/NOTE.md)
+- n23 - 
