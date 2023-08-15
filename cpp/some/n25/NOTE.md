@@ -1,0 +1,1 @@
+## n25 - trying to use `QObject:: dumpObjectInfo, dumpObjectTree`

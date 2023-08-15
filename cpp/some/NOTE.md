@@ -28,6 +28,7 @@
 
 - n17 - trying to use `Q_PROPERTY, QMetaObject, QMetaProperty` [here](./n17/NOTE.md)
 - n22 - trying to use `private slots, protected slots, public slots` [here](./n22/NOTE.md)
-- n23 - 
+- n23 - handling exceptions flying through QML [here](./n23/NOTE.md)
 - n24 - learning technology `object trees` [here](./n24/NOTE.md)
-- n25
+- n25 - trying to use `QObject:: dumpObjectInfo, dumpObjectTree` [here](./n25/NOTE.md)
+- n26 - some experience with meta-information [here](./n26/NOTE.md)

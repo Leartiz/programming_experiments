@@ -12,10 +12,14 @@ int main(int argc, char *argv[])
     const auto metaCoreApp = a.metaObject();
     qDebug() << metaCoreApp->className();
 
+    // ***
+
     const char* objClassName = "QObject";
     if (a.inherits(objClassName)) {
         qDebug() << "a is" << objClassName;
     }
+
+    // ***
 
     const char* strClassName = "QString";
     if (!a.inherits(strClassName)) {

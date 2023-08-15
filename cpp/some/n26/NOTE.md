@@ -1,0 +1,1 @@
+## n26 - some experience with meta-information
