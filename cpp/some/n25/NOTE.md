@@ -1,3 +1,3 @@
-## n25 - trying to use `QObject:: dumpObjectInfo, dumpObjectTree`
+## n25 - `QObject:: dumpObjectInfo, dumpObjectTree`
 
 - implementation [here](./main.cpp)

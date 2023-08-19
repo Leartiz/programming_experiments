@@ -1,4 +1,4 @@
-## n17 - trying to use `Q_PROPERTY, QMetaObject, QMetaProperty`
+## n17 - `Q_PROPERTY, QMetaObject, QMetaProperty`
 
 - implementation [here](./main.cpp)
 

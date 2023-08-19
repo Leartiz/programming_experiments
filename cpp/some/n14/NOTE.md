@@ -1,3 +1,3 @@
-## n14 - problem analysis `Is Subsequence`
+## n14 - `Is Subsequence`
 
 - implementation [here](./main.cpp)

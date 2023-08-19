@@ -1,3 +1,3 @@
-## n15 - problem analysis `Min Cost Climbing Stairs`
+## n15 - `Min Cost Climbing Stairs`
 
 - implementation [here](./main.cpp)

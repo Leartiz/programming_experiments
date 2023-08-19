@@ -1,4 +1,4 @@
-## n16 - problem analysis `Nim Game`
+## n16 - `Nim Game`
 
 - implementation [here](./main.cpp)
 

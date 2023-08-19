@@ -1,4 +1,4 @@
-## n3 - problem analysis `Combination Sum`
+## n3 - `Combination Sum`
 
 - implementation [here](./main.cpp)
 

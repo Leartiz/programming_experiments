@@ -1,4 +1,4 @@
-## n16 - problem analysis `Power of Three`
+## n16 - `Power of Three`
 
 - implementation [here](./main.cpp)
 

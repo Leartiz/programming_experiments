@@ -1,3 +1,3 @@
-## n11 - problem analysis `Counting Bits`
+## n11 - `Counting Bits`
 
 - implementation [here](./main.cpp)

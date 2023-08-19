@@ -1,3 +1,3 @@
-## n4 - problem analysis `Missing Number`
+## n4 - `Missing Number`
 
 - implementation [here](./main.cpp)

@@ -1,4 +1,4 @@
-## n10 - problem analysis `Contains Duplicate II`
+## n10 - `Contains Duplicate II`
 
 - implementation [here](./main.cpp)
 

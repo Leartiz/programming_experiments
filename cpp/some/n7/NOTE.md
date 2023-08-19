@@ -1,3 +1,3 @@
-## n7 - problem analysis `Product of Array Except Self`
+## n7 - `Product of Array Except Self`
 
 - implementation [here](./main.cpp)
