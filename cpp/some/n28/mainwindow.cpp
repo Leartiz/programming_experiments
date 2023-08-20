@@ -2,6 +2,9 @@
 #include <QTextEdit>
 #include <QPushButton>
 
+#include <QThread>
+#include <QMetaEnum>
+
 #include <QTextCodec>
 #include <QMessageBox>
 #include <QDebug>
@@ -59,6 +62,14 @@ MainWindow::MainWindow(QWidget *parent)
         connect(m_timer, &QTimer::timeout,
                 this, &MainWindow::onTimeout_timer);
     }
+
+    // *** works?
+
+    QThread::currentThread()->setPriority(
+        QThread::HighPriority);
+    qDebug() << "Current thread priority:"
+             << QThread::currentThread()
+                    ->priority();
 }
 
 MainWindow::~MainWindow()
