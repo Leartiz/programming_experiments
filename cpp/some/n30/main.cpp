@@ -22,12 +22,14 @@ int main(int argc, char** argv)
 
     MyThread mth;
 
-    MyEventFilter mef;
-
     QLabel label; // main thread!
     label.resize(250, 250);
     label.setText("0x00000000");
-    label.installEventFilter(&mef);
+
+    // ***
+
+    MyEventFilter mef;
+    label.installEventFilter(&mef); // label is widget!
 
     // ***
 
