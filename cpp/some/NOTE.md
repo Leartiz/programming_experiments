@@ -35,4 +35,5 @@
 - n26 - some experience with meta-information [here](./n26/NOTE.md)
 - n27 - `qFatal()` [here](./n27/NOTE.md)
 - n28 - `QProcess; QTimer; QTextCodec` [here](./n28/NOTE.md)
-- n30 - `QTimer; QThread:: moveToThread, currentThreadId` [here](./n30/NOTE.md)
+- n30 - `QTimer; QThread:: moveToThread, currentThreadId; QLabel:: installEventFilter` [here](./n30/NOTE.md)
+- n31 - `QTimer; QThread:: moveToThread; QLCDNumber` [here](./n31/NOTE.md)

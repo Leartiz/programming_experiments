@@ -1,0 +1,1 @@
+## n31 - `QTimer; QThread:: moveToThread; QLCDNumber`

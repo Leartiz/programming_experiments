@@ -12,6 +12,11 @@ MyThread::MyThread(QObject *parent)
     // m_timer = new QTimer{};
 }
 
+MyThread::~MyThread()
+{
+    delete m_timer;
+}
+
 void MyThread::onTimeout_timer()
 {
     qDebug() << "MyThread, onTimeout_timer, cur thread id:"
@@ -30,6 +35,8 @@ void MyThread::run()
     m_timer->setInterval(500);
     m_timer->setSingleShot(false);
     {
+        connect(this, &MyThread::finished,
+                m_timer, &QTimer::stop);
         connect(m_timer, &QTimer::timeout,
                 this, &MyThread::onTimeout_timer);
     }

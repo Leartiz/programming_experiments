@@ -49,6 +49,7 @@ int main(int argc, char** argv)
         qDebug() << "MyEventFilter, bb -> lambda";
 
         mth.quit();
+        mth.wait();
     });
 
     mth.moveToThread(&mth); // does not move the context?

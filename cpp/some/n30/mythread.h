@@ -12,6 +12,7 @@ class MyThread : public QThread
 public:
     explicit MyThread(
         QObject *parent = nullptr);
+    ~MyThread() override;
 
 signals:
     void counterChanged(int);
@@ -21,7 +22,7 @@ public slots:
 
     // QThread interface
 protected:
-    void run();
+    void run() override;
 
 private:
     QTimer* m_timer;
