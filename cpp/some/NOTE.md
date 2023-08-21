@@ -37,3 +37,5 @@
 - n28 - `QProcess; QTimer; QTextCodec` [here](./n28/NOTE.md)
 - n30 - `QTimer; QThread:: moveToThread, currentThreadId; QLabel:: installEventFilter` [here](./n30/NOTE.md)
 - n31 - `QTimer; QThread:: moveToThread; QLCDNumber` [here](./n31/NOTE.md)
+- n32 - `QThread; QProgressBar` [here](./n32/NOTE.md)
+- n33 - sending events [here](./n33/NOTE.md)
