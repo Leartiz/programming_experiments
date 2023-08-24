@@ -1,5 +1,6 @@
 #include <iostream>
 
+#include <QDebug>
 #include <QObject>
 #include <QApplication>
 
