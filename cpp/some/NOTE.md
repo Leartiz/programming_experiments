@@ -3,9 +3,10 @@
 - n1 - `std::rotate` algorithm analysis [here](./n1/NOTE.md)
 - n2 - `std::iter_swap` [here](./n2/NOTE.md)
 - n5 - tree with no limit on node count [here](./n5/NOTE.md)
-- n18 - `std::string:: reserve, resize` #1 [here](./n18/NOTE.md)
+- n18 - `std::string:: reserve, resize` [here](./n18/NOTE.md)
 - n19 -
-- n20 - `std::string:: reserve, resize` #2 [here](./n20/NOTE.md)
+- n20 - `std::string:: reserve, resize` [here](./n20/NOTE.md)
+- n38 - `std::future; std::packaged_task; std::thread` [here](./n38/NOTE.md)
 
 # tasks from leet-code
 
@@ -39,3 +40,11 @@
 - n31 - `QTimer; QThread:: moveToThread; QLCDNumber` [here](./n31/NOTE.md)
 - n32 - `QThread; QProgressBar` [here](./n32/NOTE.md)
 - n33 - sending events [here](./n33/NOTE.md)
+- n34 -
+- n35 -
+- n36 -
+- n37 - `QPromise; QFuture; QFutureWatcher; QtConcurrent` [here](./n37/NOTE.md)
+- n39 - `QPromise; QFuture; QFutureWatcher; std::bind` [here](./n39/NOTE.md)
+- n40 - `QScopedPointer; QPromise; QFuture; QThread` [here](./n40/NOTE.md)
+
+# + boost

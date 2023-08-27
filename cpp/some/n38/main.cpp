@@ -14,11 +14,8 @@ std::future<bool> submit_form(const std::string& form)
                     std::chrono::milliseconds(
                         500));
 
-        if (form == "user") {
-            return true;
-        }
-
-        return false;
+        return
+            form == "famous";
     };
 
     // ***
@@ -34,8 +31,8 @@ std::future<bool> submit_form(const std::string& form)
 
 int main()
 {
-    auto f0 = submit_form("user");
-    auto f1 = submit_form("uurr");
+    auto f0 = submit_form("famous");
+    auto f1 = submit_form("unknown");
 
     // ***
 

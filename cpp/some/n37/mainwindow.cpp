@@ -53,10 +53,12 @@ void MainWindow::onClicked_pushBtnRun()
         // ***
 
         QProcess dirHashProcess;
-        dirHashProcess.start("../../dependencies/builded/DirHash.exe", {
-                                 ui->lineEditPath->text(),
-                                 "-quiet", "sha1", "-nowait"
-                             });
+        dirHashProcess.start(
+            "../../dependencies/builded/DirHash.exe",
+            {
+             ui->lineEditPath->text(),
+             "-quiet", "sha1", "-nowait"
+            });
 
         QThread::msleep(2500); // imitation...
 
@@ -73,7 +75,8 @@ void MainWindow::onClicked_pushBtnRun()
         // ***
 
         result.hash =
-                dirHashProcess.readAllStandardOutput().trimmed();
+                dirHashProcess.readAllStandardOutput()
+                          .trimmed();
 
         promise.addResult(
                     std::move(
@@ -84,7 +87,7 @@ void MainWindow::onClicked_pushBtnRun()
         promise.finish();
     };
     auto future = QtConcurrent::task(std::move(task))
-            .spawn();
+                      .spawn();
 
     // ***
 

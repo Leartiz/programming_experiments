@@ -1,3 +1,3 @@
-## n20 - `std::string:: reserve, resize` #2
+## n20 - `std::string:: reserve, resize`
 
 - implementation [here](./main.cpp)
