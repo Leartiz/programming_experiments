@@ -6,6 +6,8 @@ MyTh::MyTh(QObject *parent)
 void MyTh::run()
 {
     for (int i = 0; i <= 100; ++i) {
-        msleep(10); emit progress(i);
+        msleep(10);
+
+        emit progress(i);
     }
 }

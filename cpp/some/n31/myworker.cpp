@@ -31,6 +31,7 @@ void MyWorker::onTimeout_timer()
     if (!m_value) {
         emit made();
     }
-    emit valueChanged(m_value--);
+    emit valueChanged(
+                m_value--);
 }
 

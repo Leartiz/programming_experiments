@@ -1,11 +1,14 @@
 #include <QDebug>
-#include <QCoreApplication>
+
+#include <QThread>
 #include <QRandomGenerator>
+
 #include <QVector>
 #include <QString>
-#include <QThread>
 
 #include "threadsafestringstack.h"
+
+// -----------------------------------------------------------------------
 
 int randInt(int min = 0, int max = 1000) {
     auto rg = QRandomGenerator::securelySeeded();
@@ -41,34 +44,42 @@ void poper(ThreadSafeStringStack& strs) {
 
 // -----------------------------------------------------------------------
 
-int main(int argc, char *argv[])
+int main()
 {
     const int thCount{ 100 };
     ThreadSafeStringStack strs;
 
-    QCoreApplication a(argc, argv);
-
     // ***
 
     QVector<QThread*> ths;
-    for (int i = 0; i < thCount; ++i) {
+    for (int i = 0; i < thCount / 2; ++i) {
         ths.push_back(
                     QThread::create(
                         pusher, std::ref(strs)));
     }
+    for (int i = 0; i < thCount / 2; ++i) {
+        ths.push_back(
+                    QThread::create(
+                        poper, std::ref(strs)));
+    }
+    qDebug() << "Threads count:"
+             << ths.size();
 
     // ***
 
-    for (int i = 0; i < thCount; ++i) {
+    for (int i = 0; i < ths.size(); ++i) {
         ths[i]->start();
     }
 
     // ***
 
-    for (int i = 0; i < thCount; ++i) {
+    for (int i = 0; i < ths.size(); ++i) {
         ths[i]->wait();
+
+        delete ths[i];
+        ths[i] = Q_NULLPTR;
     }
 
     qDebug() << strs.list();
-    return a.exec();
+    return 0;
 }
