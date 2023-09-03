@@ -45,6 +45,8 @@
 - n37 - `QPromise; QFuture; QFutureWatcher; QtConcurrent` [here](./n37/NOTE.md)
 - n39 - `QPromise; QFuture; QFutureWatcher; std::bind` [here](./n39/NOTE.md)
 - n40 - `QScopedPointer; QPromise; QFuture; QThread` [here](./n40/NOTE.md)
+- n41 - `QVariant` [here](./n41/NOTE.md)
+- n42 - `QListIterator; QMutableListIterator; foreach` [here](./n42/NOTE.md)
 
 # + boost
 

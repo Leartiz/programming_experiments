@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include <QDebug>
 #include <QJsonObject>
 #include <QJsonDocument>
@@ -57,7 +59,7 @@ public:
 int main()
 {
     QList<QString> strs;
-    strs << "1" << "2" << "3";
+    strs << "1" << "2" << "3" << "-1" << "6" << "5";
 
     // java
     {
@@ -65,32 +67,70 @@ int main()
         it.findNext("2");
         qDebug() << "unit:" << it.previous() << "\n";
 
-        // ***
+        qDebug() << "***";
 
         it.toFront();
         while (it.hasNext()) {
             qDebug() << "unit:" << it.next();
         }
-    }
-    qDebug() << "---";
-    {
-        QListIterator<QString> it{ strs };
+
+        qDebug() << "***";
+
         it.toBack();
         while (it.hasPrevious()) {
             qDebug() << "unit:" << it.previous();
         }
-    }
-    {
 
+        qDebug() << "***";
+
+        QList<QString> duplicateStrs = strs;
+        QMutableListIterator<QString> mit{ duplicateStrs };
+        while (mit.hasNext()) {
+            const auto oldUnit =
+                mit.next();
+
+            // replaces the value of the last item
+            // that was jumped over using
+            // one of the traversal functions with value.
+            mit.setValue("0");
+
+            // returns a non-const reference
+            // to the value of the last item
+            // that was jumped over using
+            // one of the traversal functions.
+            const auto newUnit =
+                mit.value();
+
+            qDebug() << "old unit:" << oldUnit
+                     << "new unit:" << newUnit;
+        }
     }
 
     qDebug() << "---";
 
     // stl
     {
-        for (auto it = strs.begin(); it != strs.end(); ++it) {
+        for (auto it = strs.begin();
+             it != strs.end();
+             ++it) {
             qDebug() << "unit:" << *it;
         }
+
+        qDebug() << "***";
+
+        // reverse
+        for (auto it = strs.end(); it != strs.begin();) {
+            --it;
+            qDebug() << "unit:" << *it;
+        }
+
+        qDebug() << "*** sort ***";
+
+        qDebug() << strs;
+        std::sort(
+            strs.begin(),
+            strs.end());
+        qDebug() << strs;
     }
 
     qDebug() << "---";
