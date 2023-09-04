@@ -47,6 +47,7 @@
 - n40 - `QScopedPointer; QPromise; QFuture; QThread` [here](./n40/NOTE.md)
 - n41 - `QVariant` [here](./n41/NOTE.md)
 - n42 - `QListIterator; QMutableListIterator; foreach` [here](./n42/NOTE.md)
+- n43 - `QMultiMap; QMap` [here](./n43/NOTE.md)
 
 # + boost
 

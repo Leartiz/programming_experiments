@@ -1,3 +1,3 @@
-## n41 - `QVariant`
+## n43 - `QMultiMap; QMap`
 
 - implementation [here](./main.cpp)
