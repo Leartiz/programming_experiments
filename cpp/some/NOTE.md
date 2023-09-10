@@ -48,6 +48,7 @@
 - n41 - `QVariant` [here](./n41/NOTE.md)
 - n42 - `QListIterator; QMutableListIterator; foreach` [here](./n42/NOTE.md)
 - n43 - `QMultiMap; QMap` [here](./n43/NOTE.md)
+- n44 - `QMultiHash; QHash; custom key` [here](./n44/NOTE.md)
 
 # + boost
 
