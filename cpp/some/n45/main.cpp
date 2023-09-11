@@ -2,8 +2,29 @@
 
 #include <QDebug>
 #include <QString>
+#include <QDateTime>
+#include <QDate>
+#include <QTime>
 
 #include "hashmap.h"
+
+void visual_hashFromKey()
+{
+    qDebug() << lez::hashFromKey("123");
+    qDebug() << lez::hashFromKey("1");
+    qDebug() << lez::hashFromKey("2");
+    qDebug() << lez::hashFromKey("3");
+
+    qDebug() << lez::hashFromKey(1);
+    qDebug() << lez::hashFromKey(2);
+
+    qDebug() << lez::hashFromKey(QDateTime::currentDateTime());
+    qDebug() << lez::hashFromKey(
+        QDateTime{
+            QDate{ 2021, 9, 22 },
+            QTime{ 18, 35, 42 }
+        });
+}
 
 bool tests()
 {
