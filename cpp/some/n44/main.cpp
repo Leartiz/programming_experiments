@@ -1,3 +1,6 @@
+#include <QJsonObject>
+#include <QJsonDocument>
+
 #include <QDebug>
 
 #include <QHash>
@@ -9,6 +12,14 @@ struct MyClass
     QString firstName;
     QString secondName;
 };
+
+QDebug operator<<(QDebug dbg, const MyClass& mc)
+{
+    return dbg << QJsonObject{
+        { "firstName", mc.firstName },
+        { "secondName", mc.secondName },
+    };
+}
 
 bool operator==(const MyClass& mc1, const MyClass& mc2)
 {
@@ -28,9 +39,17 @@ uint qHash(const MyClass& mc)
 
 int main()
 {
-//    {
-//        QHash<QString, MyClass> hash;
-//    }
+    {
+        QHash<QString, MyClass> hash;
+        hash.insert("0", MyClass{ "first", "second" });
+        hash.insert("1", MyClass{ "first1", "second1" });
+        hash.insert("2", MyClass{ "first2", "second2" });
+        qDebug() << hash["0"];
+        qDebug() << hash["1"];
+        qDebug() << hash["3"];
+    }
+
+    qDebug() << "---";
 
     {
         QHash<MyClass, QString> hash;
