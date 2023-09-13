@@ -23,3 +23,13 @@ SceneWithSquares::SceneWithSquares(int w, int h, int sideSize, QObject *parent)
         x = 0;
     }
 }
+
+void SceneWithSquares::mousePressEvent(QGraphicsSceneMouseEvent *event)
+{
+
+}
+
+void SceneWithSquares::mouseReleaseEvent(QGraphicsSceneMouseEvent *event)
+{
+
+}

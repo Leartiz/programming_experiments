@@ -1,5 +1,6 @@
-#include <QGraphicsRectItem>
+#include <QDebug>
 #include <QWheelEvent>
+#include <QGraphicsRectItem>
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
@@ -12,6 +13,9 @@ MainWindow::MainWindow(QWidget *parent)
     m_ui->setupUi(this);
     m_ui->graphicsView
             ->setScene(m_scene);
+
+    m_ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    m_ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 }
 
 MainWindow::~MainWindow()
@@ -21,19 +25,36 @@ MainWindow::~MainWindow()
 
 void MainWindow::wheelEvent(QWheelEvent *pWheelEvent)
 {
-    // Do a wheel-based zoom about the cursor position
-    double angle = pWheelEvent->angleDelta().y();
-    double factor = qPow(1.0015, angle);
+    qDebug() << "angleDelta:" << pWheelEvent->angleDelta();
+    qDebug() << "pixelDelta:" << pWheelEvent->pixelDelta();
+    qDebug() << "phase:"      << pWheelEvent->phase();
+    qDebug() << "position:"   << pWheelEvent->position();
+    qDebug() << "viewport width:" << m_ui->graphicsView->viewport()->width() / 2.0;
+    qDebug() << "viewport height" << m_ui->graphicsView->viewport()->height() / 2.0;
 
-    auto targetViewportPos = pWheelEvent->position();
-    auto targetScenePos = m_ui->graphicsView->mapToScene(
-                pWheelEvent->position().toPoint());
+    // ***
 
-    m_ui->graphicsView->scale(factor, factor);
+    const double angle = pWheelEvent->angleDelta().y(); // 120, -120
+    const double factor = qPow(1.00075, angle);
+
+    const auto targetViewportPos = pWheelEvent->position();
+    const auto targetScenePos = m_ui->graphicsView->mapToScene(targetViewportPos.toPoint());
+
     m_ui->graphicsView->centerOn(targetScenePos);
-    QPointF deltaViewportPos = targetViewportPos - QPointF(m_ui->graphicsView->viewport()->width() / 2.0, m_ui->graphicsView->viewport()->height() / 2.0);
-    QPointF viewportCenter = m_ui->graphicsView->mapFromScene(targetScenePos) - deltaViewportPos;
-    m_ui->graphicsView->centerOn(m_ui->graphicsView->mapToScene(viewportCenter.toPoint()));
+    m_ui->graphicsView->scale(factor, factor);
+
+    const QPointF deltaViewportPos =
+            targetViewportPos -
+            QPointF(
+                m_ui->graphicsView->viewport()->width() / 2.0,
+                m_ui->graphicsView->viewport()->height() / 2.0
+                );
+
+    QPointF viewportCenter =
+            m_ui->graphicsView->mapFromScene(targetScenePos) - deltaViewportPos;
+    m_ui->graphicsView->centerOn(
+                m_ui->graphicsView->mapToScene(
+                    viewportCenter.toPoint()));
 
     return;
 }

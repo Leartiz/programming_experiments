@@ -11,6 +11,11 @@ class SceneWithSquares : public QGraphicsScene
 public:
     SceneWithSquares(int w, int h, int sideSize, QObject *parent = nullptr);
 
+    // QGraphicsScene interface
+protected:
+    void mousePressEvent(QGraphicsSceneMouseEvent *event);
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event);
+
 private:
     using Row = QVector<int>;
     using Matrix = QVector<Row>;
