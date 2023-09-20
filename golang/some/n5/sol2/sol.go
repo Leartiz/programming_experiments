@@ -10,6 +10,8 @@ type IFilter interface {
 	SetOffset(int)
 }
 
+// -----------------------------------------------------------------------
+
 type Filter struct {
 	limit  int
 	offset int
