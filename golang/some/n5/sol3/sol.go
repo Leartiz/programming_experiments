@@ -11,11 +11,14 @@ func (f *Filter) GetLimit() int {
 	return f.Limit
 }
 
-type Filterable struct {
-	Filter
+type IFilter interface {
+	~struct {
+		Limit  int
+		Offset int
+	}
 }
 
-func NormalizeFilter[T Filterable](filter T) {
+func NormalizeFilter(filter IFilter) {
 	if filter.Limit < 0 {
 		filter.SetLimit(common.Abs(filter.Limit()))
 		if filter.Limit() > common.Instance.MAX_FILTER_LIMIT {
