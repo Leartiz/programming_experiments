@@ -1,35 +1,33 @@
 package sol3
 
-import "some/n5/common"
+// type Filter struct {
+// 	Limit  int
+// 	Offset int
+// }
 
-type Filter struct {
-	Limit  int
-	Offset int
-}
+// func (f *Filter) GetLimit() int {
+// 	return f.Limit
+// }
 
-func (f *Filter) GetLimit() int {
-	return f.Limit
-}
+// type IFilter interface {
+// 	~struct {
+// 		Limit  int
+// 		Offset int
+// 	}
+// }
 
-type IFilter interface {
-	~struct {
-		Limit  int
-		Offset int
-	}
-}
+// func NormalizeFilter[T ~Filter](filter T) {
+// 	if filter.Limit < 0 {
+// 		filter.SetLimit(common.Abs(filter.Limit()))
+// 		if filter.Limit() > common.Instance.MAX_FILTER_LIMIT {
+// 			filter.SetLimit(common.Instance.MAX_FILTER_LIMIT)
+// 		}
+// 	}
 
-func NormalizeFilter(filter IFilter) {
-	if filter.Limit < 0 {
-		filter.SetLimit(common.Abs(filter.Limit()))
-		if filter.Limit() > common.Instance.MAX_FILTER_LIMIT {
-			filter.SetLimit(common.Instance.MAX_FILTER_LIMIT)
-		}
-	}
-
-	if filter.Offset() < 0 {
-		filter.SetOffset(common.Abs(filter.Offset()))
-	}
-}
+// 	if filter.Offset() < 0 {
+// 		filter.SetOffset(common.Abs(filter.Offset()))
+// 	}
+// }
 
 // type Foo struct {
 // 	val int

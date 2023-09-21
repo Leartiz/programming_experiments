@@ -8,8 +8,6 @@
 #include <cassert>
 #include <cmath>
 
-#include "omp.h"
-
 bool isEqual(double a, double b, double eps = 0.00001) {
     return abs(a-b) < eps;
 }

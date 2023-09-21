@@ -1,14 +1,11 @@
 package n5
 
 import (
-	"fmt"
 	"some/n5/sol1"
 	"some/n5/sol2"
 )
 
 func Exec() {
-	fmt.Println("n5")
-
 	// sol1
 	{
 		{

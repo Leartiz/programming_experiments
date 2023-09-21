@@ -11,7 +11,7 @@ int main()
     std::cin.getline(str, 10) >> a;
 
     std::string s;
-    std::getline()
+    //std::getline()
 
 
     cout << "Hello World!" << endl;
