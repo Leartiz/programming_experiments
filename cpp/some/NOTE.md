@@ -7,6 +7,7 @@
 - n19 -
 - n20 - `std::string:: reserve, resize` [here](./n20/NOTE.md)
 - n38 - `std::future; std::packaged_task; std::thread` [here](./n38/NOTE.md)
+- n56 - `std::vector ::emplace_back, push_back` [here](./n56/NOTE.md)
 
 # tasks from leet-code
 
@@ -49,6 +50,7 @@
 - n42 - `QListIterator; QMutableListIterator; foreach` [here](./n42/NOTE.md)
 - n43 - `QMultiMap; QMap` [here](./n43/NOTE.md)
 - n44 - `QMultiHash; QHash; custom key` [here](./n44/NOTE.md)
+- n57 - `QRegularExpression` [here](./n57/NOTE.md)
 
 # + boost
 
