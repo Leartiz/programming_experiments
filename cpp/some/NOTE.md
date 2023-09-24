@@ -8,6 +8,10 @@
 - n20 - `std::string:: reserve, resize` [here](./n20/NOTE.md)
 - n38 - `std::future; std::packaged_task; std::thread` [here](./n38/NOTE.md)
 - n56 - `std::vector ::emplace_back, push_back` [here](./n56/NOTE.md)
+- n58 - `stack unwinding; abort; throw-catch` [here](./n58/NOTE.md)
+- n59 - `exceptions` [here](./n59/NOTE.md)
+- n60 - `slicing inside exception handling` [here](./n60/NOTE.md)
+- n61 - `std::bad_typeid` [here](./n61/NOTE.md)
 
 # tasks from leet-code
 
