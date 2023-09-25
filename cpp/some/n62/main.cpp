@@ -1,11 +1,29 @@
 #include <iostream>
+#include <stdexcept>
 
 using namespace std;
 
-// ~Desctructor noexcept
+struct S
+{
+    int value{ 0 };
+
+    ~S()
+    {
+        throw runtime_error("to terminate");
+    }
+};
 
 int main()
 {
-    cout << "Hello World!" << endl;
+    {
+        try {
+            S s{ 25 };
+            cout << s.value << endl;
+        }
+        catch (...) {
+            cerr << "err" << endl;
+        }
+    }
+
     return 0;
 }

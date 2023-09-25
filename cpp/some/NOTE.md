@@ -12,6 +12,7 @@
 - n59 - `exceptions` [here](./n59/NOTE.md)
 - n60 - `slicing inside exception handling` [here](./n60/NOTE.md)
 - n61 - `std::bad_typeid` [here](./n61/NOTE.md)
+- n62 - `throw exception from destructor` [here](./n62/NOTE.md)
 
 # tasks from leet-code
 
