@@ -21,6 +21,8 @@ using namespace std;
 
 // линия калба
 
+// время жизни ламбда в Qt
+
 int main()
 {
     cout << "Hello World!" << endl;
