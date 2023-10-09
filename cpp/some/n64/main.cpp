@@ -1,4 +1,5 @@
 #include <QDebug>
+#include <QTextStream>
 
 #include <QCoreApplication>
 #include <QNetworkInterface>
@@ -6,9 +7,10 @@
 QString getMacAddress()
 {
     QString text;
-    foreach(QNetworkInterface interface, QNetworkInterface::allInterfaces()) {
-        text += "Interface:"+interface.hardwareAddress()+"\n";
-    }
+    QTextStream textStream{ &text };
+
+    foreach(QNetworkInterface interface, QNetworkInterface::allInterfaces())
+        textStream << "interface: " + interface.hardwareAddress() << " ";
     return text;
 }
 
