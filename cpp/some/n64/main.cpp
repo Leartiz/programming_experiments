@@ -10,12 +10,14 @@ QString getMacAddress()
     QTextStream textStream{ &text };
 
     foreach(QNetworkInterface interface, QNetworkInterface::allInterfaces())
-        textStream << "interface: " + interface.hardwareAddress() << " ";
+        textStream << "interface: " + interface.hardwareAddress() << "\n";
     return text;
 }
 
 int main()
 {
-    qDebug() << getMacAddress();
+    const auto some = getMacAddress().split("\n", Qt::SplitBehaviorFlags::SkipEmptyParts);
+    for (int i = 0; i < some.size(); ++i)
+        qDebug() << some[i];
     return 0;
 }

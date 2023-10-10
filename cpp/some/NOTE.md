@@ -13,7 +13,8 @@
 - n60 - `slicing inside exception handling` [here](./n60/NOTE.md)
 - n61 - `std::bad_typeid` [here](./n61/NOTE.md)
 - n62 - `throw exception from destructor` [here](./n62/NOTE.md)
-- 
+- n65 - `std::unique_ptr` and custom deleter [here](./n65/NOTE.md)
+- n67 - inheritance of multiple classes and exceptions [here](./n67/NOTE.md)
 
 # tasks from leet-code
 
@@ -57,6 +58,9 @@
 - n43 - `QMultiMap; QMap` [here](./n43/NOTE.md)
 - n44 - `QMultiHash; QHash; custom key` [here](./n44/NOTE.md)
 - n57 - `QRegularExpression` [here](./n57/NOTE.md)
+- n64 - mac addresses `QNetworkInterface` [here](./n64/NOTE.md)
+- n66 - `QSysInfo; QHostInfo; QNetworkInterface` [here](./n66/NOTE.md)
+- n68 - `QDateTime; QThread:: sleep` [her](./n68/NOTE.md)
 
 # + boost
 
