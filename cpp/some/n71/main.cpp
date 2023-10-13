@@ -1,9 +1,8 @@
 #include <iostream>
 
-using namespace std;
+#include "zen/zen.hpp"
 
 int main()
-{
-    cout << "Hello World!" << endl;
-    return 0;
-}
+{    
+    std::cout << "123";
+};
