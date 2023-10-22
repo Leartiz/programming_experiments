@@ -15,6 +15,8 @@
 - n62 - `throw exception from destructor` [here](./n62/NOTE.md)
 - n65 - `std::unique_ptr` and custom deleter [here](./n65/NOTE.md)
 - n67 - inheritance of multiple classes and exceptions [here](./n67/NOTE.md)
+- n72 - `std::istream:: good, eof, fail, bad` [here](./n72/NOTE.md)
+- n73 - pass `std::istream` by reference [here](./n73/NOTE.md)
 
 # tasks from leet-code
 
