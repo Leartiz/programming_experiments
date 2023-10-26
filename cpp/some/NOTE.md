@@ -63,6 +63,7 @@
 - n64 - mac addresses `QNetworkInterface` [here](./n64/NOTE.md)
 - n66 - `QSysInfo; QHostInfo; QNetworkInterface` [here](./n66/NOTE.md)
 - n68 - `QDateTime; QThread:: sleep` [her](./n68/NOTE.md)
+- n74 - `QThread`
 
 # + boost
 
