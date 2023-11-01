@@ -1,0 +1,6 @@
+#include <QCoreApplication>
+
+int main()
+{
+
+}

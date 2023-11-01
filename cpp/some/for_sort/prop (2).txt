@@ -1,0 +1,92 @@
+#ifndef PROPERTY_H
+#define PROPERTY_H
+
+#include <QMap>
+#include <typeinfo>
+
+class BaseProperty {
+public:
+    BaseProperty() {}
+    virtual ~BaseProperty() = default;
+
+    virtual void* data() = 0;
+    virtual const std::type_info& getTypeInfo() = 0;
+
+    template<class T>
+    auto getValue() {
+
+        void* ptr = data();
+
+        return static_cast<T*>(ptr);
+    }
+};
+
+class PropertyRepository {
+protected:
+    QMap<QString, BaseProperty*> properties;
+
+public:
+    void insertProperty(const QString& key, BaseProperty* value) {
+        properties.insert(key, value);
+    }
+
+    BaseProperty* property(const QString& key) {
+        return properties[key];
+    }
+
+    template<class T>
+    void setProperty(const QString& key, T value)
+    {
+        auto valptr = properties[key]->getValue<T>();
+        valptr = value;
+    }
+};
+
+
+template<class T>
+class Property: public BaseProperty
+{
+    QString m_key;
+
+public:
+    T value;
+
+    Property(QString name, T val, PropertyRepository* repository):
+        m_key(name), value(val)
+    {
+        repository->insertProperty(m_key, this);
+    }
+
+    const QString key() {
+        return m_key;
+    }
+
+    void* data() override {
+        return static_cast<void*>(&value);
+    }
+
+    const std::type_info& getTypeInfo() override {
+        return typeid(value);
+    }
+
+};
+
+#define DECL_PROPERTY(type, name, value) Property<type> name = Property<type>(QString(#name), value, this);
+
+
+class Dto: public PropertyRepository
+{
+    // Property<qint64> id = Property<qint64>("id", 1, &properties);
+public:
+
+    DECL_PROPERTY(qint64, id, (qint64) 1)
+    DECL_PROPERTY(QString, name, QString("OK"))
+
+    int dosomething() {
+        id.value = 3;
+
+        return id.value;
+    }
+};
+
+#endif // PROPERTY_H
