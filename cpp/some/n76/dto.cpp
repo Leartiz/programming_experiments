@@ -14,10 +14,12 @@ QJsonObject DataTransferObject::toJson() const
         const auto key = metaproperty.name();
         auto value = metaproperty.readOnGadget(this);
 
-        if (value.canConvert<DataTransferObject*>()) {
-            const auto dto = value.value<DataTransferObject*>();
-            if (dto) value = QVariant::fromValue(dto->toJson());
+        if (value.canView(mo.metaType())) {
+            void* unknownDto = value.data();
+            auto dto = reinterpret_cast<DataTransferObject*>(unknownDto);
+            value = QVariant::fromValue(dto->toJson());
         }
+
 
         result.insert(
             key,

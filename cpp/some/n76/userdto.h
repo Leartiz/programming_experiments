@@ -7,17 +7,13 @@
 class UserDto : public DataTransferObject
 {
     Q_GADGET
-public:
+    QT_REDECL_STATIC_META_OBJECT()
+
     QT_DECL_PROPERTY(QString, Username)
     QT_DECL_PROPERTY(QString, FirstName)
     QT_DECL_PROPERTY(QString, SecondName)
-    QT_DECL_PROPERTY(int, Age)
-    QT_DECL_PROPERTY(RoomDto*, Room)
-
-protected:
-    QMetaObject metaObject() const override {
-        return staticMetaObject;
-    }
+    QT_DECL_PROPERTY_WITH_VALUE(int, Age, 100)
+    QT_DECL_PROPERTY(RoomDto, Room)
 };
 
 #endif // USERDTO_H
