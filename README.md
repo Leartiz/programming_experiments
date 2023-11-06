@@ -5,3 +5,6 @@
 
 ## golang
 - some [here](./golang/some/NOTE.md)
+
+## python
+- some [here](./python/some/NOTE.md)
