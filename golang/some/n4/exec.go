@@ -12,3 +12,8 @@ func (s *Stack[T]) Pop() T {
 	*s = (*s)[:length-1]
 	return value
 }
+
+func Exec() {
+	stack := Stack[int]{}
+	stack.Push(123)
+}

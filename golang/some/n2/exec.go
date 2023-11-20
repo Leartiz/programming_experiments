@@ -33,7 +33,7 @@ func processLongTask(ctx context.Context) string {
 
 	select {
 	case <-time.After(2 * time.Second):
-		return fmt.Sprintf("done processing id %v\n", id)
+		return fmt.Sprintf("done processing id '%v'\n", id)
 	case <-ctx.Done():
 		log.Println("request canceled")
 		return ""
