@@ -1,2 +1,0 @@
-[requires]
-zpp_bits/4.4.19
