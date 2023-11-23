@@ -1,7 +1,6 @@
 #include <QString>
 
 #include <QFuture>
-#include <QFutureWatcher>
 #include <QPromise>
 
 #include <QDebug>
@@ -14,7 +13,7 @@ int main()
         forever {
 
             qDebug() << ".";
-            QThread::msleep(250);
+            QThread::msleep(100);
 
             if (promise.isCanceled()) {
                 return;
@@ -26,7 +25,7 @@ int main()
 
     // ***
 
-    QThread::msleep(1500);
+    QThread::msleep(500);
     future.cancel();
 
     future.waitForFinished();

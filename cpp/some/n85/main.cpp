@@ -49,7 +49,7 @@ void someFunc1() {
 
 int main()
 {
-    // Copy-elision: rvo, nrvo.
+    // copy-elision: rvo, nrvo.
 
     {
         std::cout << "someFunc: {\n";
