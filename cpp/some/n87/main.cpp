@@ -51,10 +51,19 @@ void from(const Object& number, Args&&... numbers) {
     from(numbers...);
 }
 
+Object create() {
+    if (rand() % 2) {
+        return Object("222");
+    }
+    return Object("111");
+}
+
 int main()
 {
-    Object obj{ "555" };
+    Object obj = create();
     from(
-        Object("123"), obj, Object("123"), obj, Object("123"), obj
+        Object("1"), obj, Object("2"), obj, Object("3"), obj, create()
         );
+
+    static_cast<void>(obj.m_value);
 }
