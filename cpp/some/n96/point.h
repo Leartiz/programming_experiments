@@ -16,4 +16,7 @@ void movePoint(Point* point,
                double x, double y);
 void printPoint(Point* point);
 
+double distanceBetweenPoints(Point* pointA,
+                             Point* pointB);
+
 #endif // POINT_H

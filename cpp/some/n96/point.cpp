@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <cmath>
 
 #include "point.h"
 
@@ -61,4 +62,15 @@ void printPoint(Point* point)
 {
     printf("Point: { x: %f, y: %f }",
            point->x, point->y);
+}
+
+// -----------------------------------------------------------------------
+
+double distanceBetweenPoints(Point* pointA, Point* pointB)
+{
+    const auto diffX = pointA->x - pointB->x;
+    const auto diffY = pointA->y - pointB->y;
+
+    return std::sqrt(diffX*diffX) +
+           std::sqrt(diffY*diffY);
 }
