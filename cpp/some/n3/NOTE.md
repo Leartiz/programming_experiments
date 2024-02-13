@@ -1,10 +1,7 @@
 ## n3 - `Combination Sum`
 
-- implementation [here](./main.cpp)
+### Visualization (with errors?)
 
-## Visualization
-
-### Example (with errors?)
 ```
 [1, 2, 3] -> 2
 

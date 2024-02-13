@@ -1,4 +1,7 @@
 ## n1 - `std::rotate` algorithm analysis
 
-- implementation [here](./main.cpp)
-- visualization [here](./n1.png)
+### Visualization
+
+<p align="center" width="100%">
+    <img src="./n1.png"> 
+</p>
