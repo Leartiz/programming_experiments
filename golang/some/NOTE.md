@@ -1,4 +1,6 @@
-# go
+# go 🦿
+
+## Unsorted
 
 1. `context.*` in mock routine [here](./n1/NOTE.md)
 2. `context.*` on web request [here](./n2/NOTE.md)
@@ -11,11 +13,19 @@
 9. `Gin Web Framework` parameters in path [here](./n9/exec.go)
 10. <Nil>
 11. solving some exercises [here](./n11/exec.go)
-12. routing in `net/http` [here](./n12/exec.go)
-13. .
-14. .
-15. .
+12. routing (with params) in `net/http` [here](./n12/exec.go)
+13. routing (empty route) in `net/http` [here](./n13/exec.go)
+14. routing (nested `ServeMux`) in `net/http` [here](./n14/exec.go)
+15. <Nil>
 
 > To start from 1-15 use [main.go](./main.go)
 
-16. 
+## Graceful Shutdown
+
+16. stopping background works [here](./n16/main.go)
+17. stopping server handlers [here](./n17/main.go)
+
+## Logging
+
+18. trying to use[`lumberjack`](https://github.com/natefinch/lumberjack) [here](./n18/main.go)
+19. trying to use [`mlog`](https://github.com/jbrodriguez/mlog) [here](./n19/main.go)

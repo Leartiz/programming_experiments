@@ -25,5 +25,6 @@ func Exec() {
 	// ***
 
 	http.ListenAndServe(
-		":42521", firstServeMux)
+		":42521", firstServeMux,
+	)
 }
