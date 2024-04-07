@@ -9,10 +9,12 @@ import (
 )
 
 func FuncTopic(w http.ResponseWriter, r *http.Request) {
+
 	values := r.URL.Query()
 	topicIdStr := values.Get("id")
 
-	// to struct.
+	// ***
+
 	if len(topicIdStr) == 0 {
 		w.WriteHeader(http.StatusBadRequest)
 		io.WriteString(w, "bad request")
@@ -35,6 +37,8 @@ func FuncTopic(w http.ResponseWriter, r *http.Request) {
 
 func FuncUser(w http.ResponseWriter, r *http.Request) {
 	// TODO:
+
+	w.Write([]byte(r.URL.Path))
 }
 
 func Exec() {
@@ -49,8 +53,10 @@ func Exec() {
 
 		if strings.HasPrefix(uriParts[2], "topic") {
 			FuncTopic(w, r)
+
 		} else if strings.HasPrefix(uriParts[2], "user") {
 			FuncUser(w, r)
+
 		} else {
 			http.NotFound(w, r)
 		}

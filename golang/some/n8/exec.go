@@ -6,12 +6,25 @@ import (
 )
 
 func Exec() {
-	var value = struct {
-		Field *string `json:"field,omitempty"`
-	}{}
+	fmt.Println("--- 1 ---")
 
-	out, _ := json.Marshal(value)
+	{
+		var value = struct {
+			Field *string `json:"field,omitempty"`
+		}{}
 
-	fmt.Println(string(out))
-	// outputs: {"field":"bar"}
+		out, _ := json.Marshal(value)
+		fmt.Println(string(out))
+	}
+
+	fmt.Println("--- 2 ---")
+
+	{
+		var value = struct {
+			Field *string `json:"field"`
+		}{}
+
+		out, _ := json.Marshal(value)
+		fmt.Println(string(out))
+	}
 }

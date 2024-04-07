@@ -1,9 +1,9 @@
 package main
 
 import (
-	"some/n4"
+	"some/n12"
 )
 
 func main() {
-	n4.Exec()
+	n12.Exec()
 }

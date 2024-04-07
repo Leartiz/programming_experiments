@@ -32,7 +32,12 @@ func main() {
 	//...
 
 	sigCh := make(chan os.Signal, 1)
-	signal.Notify(sigCh, os.Interrupt, syscall.SIGTERM)
+	signal.Notify(sigCh, os.Interrupt,
+		syscall.SIGINT,
+		syscall.SIGHUP,
+		syscall.SIGTERM,
+		syscall.SIGABRT,
+	)
 
 	fmt.Println("Приложение запущено. Для завершения нажмите Ctrl + C")
 

@@ -8,22 +8,53 @@ import (
 )
 
 func Exec() {
-	var value = &struct {
-		Field optional.String `json:"field"`
-	}{}
+	fmt.Println("--- 1 ---")
 
-	err := json.Unmarshal([]byte(`{"field":"bar"}`), value)
-	if err != nil {
-		fmt.Println(err)
+	{
+		var value = &struct {
+			Field optional.String `json:"field"`
+		}{}
+
+		err := json.Unmarshal([]byte(
+			`{ "field": "bar" }`,
+		), value)
+
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		value.Field.If(func(s string) {
+			fmt.Println(s)
+		})
+
+		_, err = value.Field.Get()
+		if err != nil {
+			fmt.Println(err)
+		}
 	}
 
-	value.Field.If(func(s string) {
-		fmt.Println(s)
-	})
+	fmt.Println("--- 2 ---")
 
-	_, err = value.Field.Get()
-	if err != nil {
-		fmt.Println(err)
+	{
+		var value = &struct {
+			Field optional.String `json:"field"`
+		}{}
+
+		err := json.Unmarshal([]byte(
+			`{}`,
+		), value)
+
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		value.Field.If(func(s string) {
+			fmt.Println(s)
+		})
+
+		_, err = value.Field.Get()
+		if err != nil {
+			fmt.Println(err) // value not present
+		}
 	}
-
 }
