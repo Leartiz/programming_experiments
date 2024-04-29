@@ -20,12 +20,18 @@
 
 > To start from 1-15 use [main.go](./main.go)
 
+- n21: sequential execution of assertions [here](./n21/main.go)
+
 ## Graceful Shutdown
 
-16. stopping background works [here](./n16/main.go)
-17. stopping server handlers [here](./n17/main.go)
+- n16: stopping background works [here](./n16/main.go)
+- n17: stopping server handlers [here](./n17/main.go)
 
 ## Logging
 
-18. trying to use[`lumberjack`](https://github.com/natefinch/lumberjack) [here](./n18/main.go)
-19. trying to use [`mlog`](https://github.com/jbrodriguez/mlog) [here](./n19/main.go)
+- n18: trying to use[`lumberjack`](https://github.com/natefinch/lumberjack) [here](./n18/main.go)
+- n19: trying to use [`mlog`](https://github.com/jbrodriguez/mlog) [here](./n19/main.go)
+
+## Redis
+
+- n20: launch `Redis` example (./n20/main.go)
