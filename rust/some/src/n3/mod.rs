@@ -30,11 +30,11 @@ fn example_2() {
 
 fn example_3() {
     let mut rng = rand::thread_rng();
-    let cond: i32 = rng.gen::<i32>() % 3;
+    let num: i32 = rng.gen::<i32>() % 3;
 
-    let number = if cond == 0 {
+    let number = if num == 1 {
         4
-    } else if cond == 1 {
+    } else if num == 2 {
         5
     } else {
         10
@@ -43,9 +43,23 @@ fn example_3() {
     println!("number = {}", number);
 }
 
+fn example_4() {
+    let mut rng = rand::thread_rng();
+    let num = rng.gen::<i32>() % 4;
+
+    match num
+    {
+        1=>println! ("один"),
+        2=>println! ("два"),
+        3=>println! ("три"),
+        _=>println! ("непонятно")
+    }
+}
+
 pub fn exec() {
     example_0();
     example_1();
     example_2();
+    example_4();
     //...
 }
