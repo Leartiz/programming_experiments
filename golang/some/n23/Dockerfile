@@ -34,5 +34,3 @@ COPY --from=build /n23/main /n23/main
 COPY --from=build /n23/Makefile /n23/Makefile
 
 EXPOSE 54545/tcp
-
-CMD make only-run

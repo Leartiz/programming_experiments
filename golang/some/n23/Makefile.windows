@@ -1,7 +1,6 @@
 image_name := n23
 image_tag := v1.00
 
-
 rm_prev_build:
 	(docker container stop $(image_name) & \
 		docker container rm $(image_name) & \
