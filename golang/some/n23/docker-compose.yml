@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  dfly:
+    container_name: dfly
+    image: "chainguard/dragonfly"
+    ulimits:
+      memlock: -1
+    ports:
+      - 6379:6379
+    volumes:
+      - dragonflydata:/data
+
+  n23:
+    container_name: n23
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    command: make only-run
+    ports:
+      - 54545:54545
+    links:
+      - "dfly"
+
+# ???
+volumes:
+  dragonflydata:
