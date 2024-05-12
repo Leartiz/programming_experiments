@@ -1,0 +1,15 @@
+MAKEFLAGS += --silent
+
+deploy:
+
+build:
+	go build -ldflags="-s -w" -o main main.go
+# Удалено сообщение отладки -ldflags="-s -w"
+#	для уменьшения размера образа.
+
+# ?
+run: build only-run
+
+only-run:
+	export GIN_MODE=release && \
+	./main
