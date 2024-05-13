@@ -1,7 +1,10 @@
 {
     "cSpell.words": [
         "alertmanagers",
+        "amqp",
+        "ctag",
         "dfly",
-        "promhttp"
+        "promhttp",
+        "Vhost"
     ]
 }
