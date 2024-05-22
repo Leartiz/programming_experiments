@@ -2,9 +2,16 @@
     "cSpell.words": [
         "alertmanagers",
         "amqp",
+        "AUTOINCREMENT",
         "ctag",
         "dfly",
+        "lxzan",
+        "mattn",
+        "Permessage",
         "promhttp",
-        "Vhost"
+        "rabbitmq",
+        "upgrader",
+        "Vhost",
+        "wagslane"
     ]
 }

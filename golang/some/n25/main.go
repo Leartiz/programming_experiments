@@ -1,6 +1,3 @@
-// This example declares a durable exchange, and publishes one messages to that
-// exchange. This example allows up to 8 outstanding publisher confirmations
-// before blocking publishing.
 package main
 
 import (
@@ -18,16 +15,16 @@ const (
 	uri          = "amqp://guest:guest@localhost:5672/"
 	exchangeName = "boiler_requests"
 	queueName    = "service"
-	routingKey   = ""
+	routingKey   = "hhhhh"
 )
 
 var (
 	body       = flag.String("body", "hi", "Body of message")
 	continuous = flag.Bool("continuous", true, "Keep publishing messages at a 1msg/sec rate")
 
+	InfoLog = log.New(os.Stdout, "[INFO] ", log.LstdFlags|log.Lmsgprefix)
 	WarnLog = log.New(os.Stderr, "[WARNING] ", log.LstdFlags|log.Lmsgprefix)
 	ErrLog  = log.New(os.Stderr, "[ERROR] ", log.LstdFlags|log.Lmsgprefix)
-	Log     = log.New(os.Stdout, "[INFO] ", log.LstdFlags|log.Lmsgprefix)
 )
 
 func init() {
@@ -53,7 +50,7 @@ func setupCloseHandler(exitCh chan struct{}) {
 
 	go func() {
 		<-c
-		Log.Printf("close handler: Ctrl+C pressed in Terminal")
+		InfoLog.Printf("close handler: Ctrl+C pressed in Terminal")
 		close(exitCh)
 	}()
 }
@@ -86,33 +83,25 @@ func publish(publishOkCh <-chan struct{},
 	}
 	defer channel.Close()
 
-	channel_2, err := conn.Channel()
-	if err != nil {
-		ErrLog.Fatalf("error getting a channel: %s", err)
-	}
-	defer channel_2.Close()
-
-	// ***
-
 	if err := channel.QueueBind(queueName, routingKey, exchangeName, false, nil); err != nil {
 		ErrLog.Fatalf("producer: Queue Bind: %s", err)
 	}
 
-	Log.Printf("producer: enabling publisher confirms.")
+	InfoLog.Printf("producer: enabling publisher confirms.")
 	if err := channel.Confirm(false); err != nil {
 		ErrLog.Fatalf("producer: channel could not be put into confirm mode: %s", err)
 	}
 
 	for {
 		canPublish := false
-		Log.Println("producer: waiting on the OK to publish...")
+		InfoLog.Println("producer: waiting on the OK to publish...")
 		for {
 			select {
 			case <-confirmsDoneCh:
-				Log.Println("producer: stopping, all confirms seen")
+				InfoLog.Println("producer: stopping, all confirms seen")
 				return
 			case <-publishOkCh:
-				Log.Println("producer: got the OK to publish")
+				InfoLog.Println("producer: got the OK to publish")
 				canPublish = true
 			case <-time.After(time.Second):
 				WarnLog.Println("producer: still waiting on the OK to publish...")
@@ -123,7 +112,7 @@ func publish(publishOkCh <-chan struct{},
 			}
 		}
 
-		Log.Printf("producer: publishing %dB body (%q)", len(*body), *body)
+		InfoLog.Printf("producer: publishing %dB body (%q)", len(*body), *body)
 		dConfirmation, err := channel.PublishWithDeferredConfirm(
 			exchangeName,
 			routingKey,
@@ -145,25 +134,25 @@ func publish(publishOkCh <-chan struct{},
 
 		select {
 		case <-confirmsDoneCh:
-			Log.Println("producer: stopping, all confirms seen")
+			InfoLog.Println("producer: stopping, all confirms seen")
 			return
 		case confirmsCh <- dConfirmation:
-			Log.Println("producer: delivered deferred confirm to handler")
+			InfoLog.Println("producer: delivered deferred confirm to handler")
 		}
 
 		select {
 		case <-confirmsDoneCh:
-			Log.Println("producer: stopping, all confirms seen")
+			InfoLog.Println("producer: stopping, all confirms seen")
 			return
 		case <-time.After(time.Second):
 			if *continuous {
 				continue
 			} else {
-				Log.Println("producer: initiating stop")
+				InfoLog.Println("producer: initiating stop")
 				close(exitCh)
 				select {
 				case <-confirmsDoneCh:
-					Log.Println("producer: stopping, all confirms seen")
+					InfoLog.Println("producer: stopping, all confirms seen")
 					return
 				case <-time.After(time.Second * 10):
 					WarnLog.Println("producer: may be stopping with outstanding confirmations")
@@ -198,7 +187,7 @@ func startConfirmHandler(publishOkCh chan<- struct{},
 			if outstandingConfirmationCount <= 8 {
 				select {
 				case publishOkCh <- struct{}{}:
-					Log.Println("confirm handler: sent OK to publish")
+					InfoLog.Println("confirm handler: sent OK to publish")
 				case <-time.After(time.Second * 5):
 					WarnLog.Println("confirm handler: timeout indicating OK to publish (this should never happen!)")
 				}
@@ -221,31 +210,31 @@ func startConfirmHandler(publishOkCh chan<- struct{},
 }
 
 func exitConfirmHandler(confirms map[uint64]*amqp.DeferredConfirmation, confirmsDoneCh chan struct{}) {
-	Log.Println("confirm handler: exit requested")
+	InfoLog.Println("confirm handler: exit requested")
 	waitConfirmations(confirms)
 	close(confirmsDoneCh)
-	Log.Println("confirm handler: exiting")
+	InfoLog.Println("confirm handler: exiting")
 }
 
 func checkConfirmations(confirms map[uint64]*amqp.DeferredConfirmation) {
-	Log.Printf("confirm handler: checking %d outstanding confirmations", len(confirms))
+	InfoLog.Printf("confirm handler: checking %d outstanding confirmations", len(confirms))
 	for k, v := range confirms {
 		if v.Acked() {
-			Log.Printf("confirm handler: confirmed delivery with tag: %d", k)
+			InfoLog.Printf("confirm handler: confirmed delivery with tag: %d", k)
 			delete(confirms, k)
 		}
 	}
 }
 
 func waitConfirmations(confirms map[uint64]*amqp.DeferredConfirmation) {
-	Log.Printf("confirm handler: waiting on %d outstanding confirmations", len(confirms))
+	InfoLog.Printf("confirm handler: waiting on %d outstanding confirmations", len(confirms))
 
 	checkConfirmations(confirms)
 
 	for k, v := range confirms {
 		select {
 		case <-v.Done():
-			Log.Printf("confirm handler: confirmed delivery with tag: %d", k)
+			InfoLog.Printf("confirm handler: confirmed delivery with tag: %d", k)
 			delete(confirms, k)
 		case <-time.After(time.Second):
 			WarnLog.Printf("confirm handler: did not receive confirmation for tag %d", k)
@@ -256,6 +245,6 @@ func waitConfirmations(confirms map[uint64]*amqp.DeferredConfirmation) {
 	if outstandingConfirmationCount > 0 {
 		ErrLog.Printf("confirm handler: exiting with %d outstanding confirmations", outstandingConfirmationCount)
 	} else {
-		Log.Println("confirm handler: done waiting on outstanding confirmations")
+		InfoLog.Println("confirm handler: done waiting on outstanding confirmations")
 	}
 }

@@ -16,7 +16,11 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile
-    command: make only-run
+
+    environment:
+      - trace_id=123
+    command: 
+    
     ports:
       - 54545:54545
     links:
