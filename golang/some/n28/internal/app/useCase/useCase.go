@@ -5,56 +5,53 @@ import (
 	"errors"
 	"fmt"
 	"log"
-	"n28/internal/app/inPort"
-	inDto "n28/internal/app/inPort/dto"
+	appDto "n28/internal/app/dto"
 	"n28/internal/app/outPort"
-	outDto "n28/internal/app/outPort/dto"
 	"time"
 )
 
 type Dependencies struct {
-	Db    outPort.Database
-	Msgs  outPort.Msgs
-	Cache outPort.Cache
-
-	InsertProductChannel inPort.InsertProductChannel
+	Cache      outPort.Cache
+	Db         outPort.Database
+	Msgs       outPort.Msgs
+	BkgTimeout time.Duration
 }
 
 func (d *Dependencies) validate() error {
+	if d.Cache == nil {
+		return errors.New("cache not provided")
+	}
 	if d.Db == nil {
 		return errors.New("db not provided")
 	}
 	if d.Msgs == nil {
 		return errors.New("msgs not provided")
 	}
-	if d.Cache == nil {
-		return errors.New("cache not provided")
-	}
-
-	if d.InsertProductChannel == nil {
-		return errors.New("`insert product` channel not provided")
-	}
 
 	return nil
 }
 
 type UseCase struct {
-	db              outPort.Database
-	msgs            outPort.Msgs
-	cache           outPort.Cache
-	insertProductCh inPort.InsertProductChannel
+	cache      outPort.Cache
+	db         outPort.Database
+	msgs       outPort.Msgs
+	bkgTimeout time.Duration
 }
 
-func New(deps Dependencies) (*UseCase, error) {
+func New(ctxForInit, ctxForCancel context.Context, deps Dependencies) (*UseCase, error) {
 	if err := deps.validate(); err != nil {
 		return nil, err
 	}
 
-	return &UseCase{
-		db:    deps.Db,
-		msgs:  deps.Msgs,
-		cache: deps.Cache,
-	}, nil
+	uc := UseCase{
+		cache:      deps.Cache,
+		db:         deps.Db,
+		msgs:       deps.Msgs,
+		bkgTimeout: deps.BkgTimeout,
+	}
+
+	go uc.asyncConsumeExternalAddedProduct(ctxForInit, ctxForCancel)
+	return &uc, nil
 }
 
 // public
@@ -64,14 +61,14 @@ func (u *UseCase) GetProductCount(ctx context.Context) (uint64, error) {
 	return u.db.GetProductCount(ctx)
 }
 
-func (u *UseCase) InsertProductNoReturning(ctx context.Context, data inDto.InsertProduct) error {
+func (u *UseCase) InsertProductNoReturning(ctx context.Context, data appDto.InsertProduct) error {
 	if data.Name == "" || data.Desc == "" || data.Price < 0 {
 		return errors.New("invalid data")
 	}
 
-	// ***
+	// to infra...
 
-	id, err := u.db.InsertProduct(ctx, outDto.InsertProduct{
+	id, err := u.db.InsertProduct(ctx, appDto.InsertProduct{
 		Name:  data.Name,
 		Desc:  data.Desc,
 		Price: data.Price,
@@ -83,8 +80,6 @@ func (u *UseCase) InsertProductNoReturning(ctx context.Context, data inDto.Inser
 	if err != nil {
 		return err
 	}
-
-	// ***
 
 	err = u.cache.SaveProduct(ctx, fmt.Sprintf("product_%v", id), product, 30*time.Minute)
 	if err != nil {
@@ -102,18 +97,27 @@ func (u *UseCase) InsertProductNoReturning(ctx context.Context, data inDto.Inser
 // private
 // -----------------------------------------------------------------------
 
-func (u *UseCase) bkgProcessingInsertProduct() {
+func (u *UseCase) asyncConsumeExternalAddedProduct(ctxForInit, ctxForCancel context.Context) {
+	ch, err := u.msgs.GetChanForProductAddedExternally(ctxForInit)
+	if err != nil {
+		log.Fatalf("failed to start asynchronous task")
+	}
+
 	for {
 		select {
-		case data, closed := <-u.insertProductCh:
-			if closed {
-				return
-			}
+		case <-ctxForCancel.Done():
+			log.Printf("async consume external added product [canceled]")
+			return
 
-			err := u.InsertProductNoReturning(context.Background(), data)
-			if err != nil {
-				log.Printf("bkg insert product err %v", err)
-			}
+		case product := <-ch:
+			ctx, cancel := context.WithTimeout(context.Background(), u.bkgTimeout)
+			defer cancel()
+
+			u.InsertProductNoReturning(ctx, appDto.InsertProduct{
+				Name:  product.Name,
+				Desc:  product.Desc,
+				Price: product.Price,
+			})
 		}
 	}
 }

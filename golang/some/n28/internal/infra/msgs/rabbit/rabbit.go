@@ -5,10 +5,10 @@ import (
 	"encoding/json"
 	"fmt"
 	"log"
-	"n28/internal/app/inPort"
-	inPortDto "n28/internal/app/inPort/dto"
+	appDto "n28/internal/app/dto"
 	"n28/internal/domain"
 	rabbitDto "n28/internal/infra/msgs/rabbit/dto"
+	"time"
 
 	"github.com/wagslane/go-rabbitmq"
 )
@@ -21,8 +21,6 @@ type Dependencies struct {
 
 	ExchangeName                   string
 	QueueNameExternalAddedProducts string
-
-	ChInsertProductChannel inPort.InsertProductChannel
 }
 
 func createConnString(deps Dependencies) string {
@@ -38,8 +36,7 @@ type RabbitMsgs struct {
 	exchangeName                   string
 	queueNameExternalAddedProducts string
 
-	chExternalAddedProducts chan string
-	chInsertProductChannel  inPort.InsertProductChannel
+	chanForProductAddedExternally chan appDto.InsertProduct
 }
 
 func New(deps Dependencies) (*RabbitMsgs, error) {
@@ -79,14 +76,33 @@ func New(deps Dependencies) (*RabbitMsgs, error) {
 		return nil, err
 	}
 
-	chExternalAddedProducts := make(chan string)
-	err = consumer.Run(func(d rabbitmq.Delivery) rabbitmq.Action {
-		chExternalAddedProducts <- string(d.Body)
-		return rabbitmq.Ack
-	})
-	if err != nil {
-		return nil, err
-	}
+	externalAddedProductsChan := make(chan appDto.InsertProduct, 5)
+	go func() {
+		err := consumer.Run(func(d rabbitmq.Delivery) rabbitmq.Action {
+			product := rabbitDto.AddNewProduct{}
+			err := json.Unmarshal(d.Body, &product)
+			if err != nil {
+				log.Printf("failed to consume product")
+				return rabbitmq.NackDiscard
+			}
+
+			select {
+			case externalAddedProductsChan <- appDto.InsertProduct{
+				Name:  product.Name,
+				Desc:  product.Desc,
+				Price: product.Price,
+			}:
+			case <-time.After(2500 * time.Millisecond):
+				return rabbitmq.NackRequeue
+			}
+
+			return rabbitmq.Ack
+		})
+
+		if err != nil {
+			log.Fatalf("failed to start consumer")
+		}
+	}()
 
 	// -------------------------------------------------------------------
 
@@ -97,12 +113,9 @@ func New(deps Dependencies) (*RabbitMsgs, error) {
 
 		exchangeName:                   deps.ExchangeName,
 		queueNameExternalAddedProducts: deps.QueueNameExternalAddedProducts,
-
-		chExternalAddedProducts: chExternalAddedProducts,
-		chInsertProductChannel:  deps.ChInsertProductChannel,
+		chanForProductAddedExternally:  externalAddedProductsChan,
 	}
 
-	//go instance.consumeExternalAddedProducts()
 	return &instance, nil
 }
 
@@ -130,29 +143,9 @@ func (r *RabbitMsgs) PublishNewProduct(ctx context.Context,
 	return nil
 }
 
-// private
-// -----------------------------------------------------------------------
-
-func (r *RabbitMsgs) consumeExternalAddedProducts() {
-	for {
-		select {
-		case msg, closed := <-r.chExternalAddedProducts:
-			if closed {
-				return
-			}
-
-			product := rabbitDto.AddNewProduct{}
-			err := json.Unmarshal([]byte(msg), &product)
-			if err != nil {
-				log.Printf("failed to consume product")
-				continue
-			}
-
-			r.chInsertProductChannel <- inPortDto.InsertProduct{
-				Name:  product.Name,
-				Desc:  product.Desc,
-				Price: product.Price,
-			}
-		}
-	}
+func (r *RabbitMsgs) GetChanForProductAddedExternally(ctx context.Context) (
+	<-chan appDto.InsertProduct, error,
+) {
+	productsChan := r.chanForProductAddedExternally
+	return productsChan, nil
 }

@@ -2,7 +2,7 @@ package outPort
 
 import (
 	"context"
-	"n28/internal/app/outPort/dto"
+	"n28/internal/app/dto"
 	"n28/internal/domain"
 )
 

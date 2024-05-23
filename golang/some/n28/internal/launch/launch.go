@@ -1,8 +1,9 @@
 package launch
 
 import (
+	"context"
 	"log"
-	"n28/internal/app/inPort"
+	"n28/internal/app/outPort"
 	"n28/internal/app/useCase"
 	"n28/internal/infra/cache/ram"
 	"n28/internal/infra/msgs/rabbit"
@@ -18,11 +19,7 @@ const (
 	PingWait     = 10 * time.Second
 )
 
-func Launch() error {
-
-	// Async In Ports To Infra
-
-	insertProductCh := inPort.NewInsertProductChannel()
+func Launch(ctxForInit, ctxForCancel context.Context) error {
 
 	// Infra Out Ports
 
@@ -43,6 +40,9 @@ func Launch() error {
 		Pass: "guest",
 		Host: "localhost",
 		Port: 5672,
+
+		ExchangeName:                   outPort.ExchangeName,
+		QueueNameExternalAddedProducts: outPort.QueueNameExternalAddedProduct,
 	})
 	if err != nil {
 		return nil
@@ -52,21 +52,18 @@ func Launch() error {
 	// App
 
 	ucDeps := useCase.Dependencies{
-		Db:    outPortDb,
-		Cache: outPortCache,
-		Msgs:  outPortMsgs,
-
-		InsertProductChannel: insertProductCh,
+		Db:         outPortDb,
+		Cache:      outPortCache,
+		Msgs:       outPortMsgs,
+		BkgTimeout: 5 * time.Second,
 	}
 
-	uc, err := useCase.New(ucDeps)
+	uc, err := useCase.New(ctxForInit, ctxForCancel, ucDeps)
 	if err != nil {
 		return nil
 	}
 
 	// Deps For Infra
-
-	// provide access to the client at the very end!!
 
 	err = ws.Listen(ws.Dependencies{
 		PingInterval: PingInterval,

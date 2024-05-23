@@ -6,6 +6,7 @@ import (
 	"log"
 	"n28/internal/app/inPort"
 	inPortDto "n28/internal/app/inPort/dto"
+	"n28/internal/domain"
 	wsDto "n28/internal/infra/ws/dto"
 	"time"
 
@@ -16,14 +17,16 @@ type Handler struct {
 	pingInterval time.Duration
 	pingWait     time.Duration
 	productUc    inPort.ProductUseCase
+	sockets      []*gws.Conn
 }
 
 func NewHandler(deps Dependencies) (*Handler, error) {
-	return &Handler{
+	h := Handler{
 		pingInterval: deps.PingInterval,
 		pingWait:     deps.PingWait,
 		productUc:    deps.ProductUc,
-	}, nil
+	}
+	return &h, nil
 }
 
 // public
@@ -31,11 +34,25 @@ func NewHandler(deps Dependencies) (*Handler, error) {
 
 func (c *Handler) OnOpen(socket *gws.Conn) {
 	_ = socket.SetDeadline(time.Now().Add(c.pingInterval + c.pingWait))
+	c.sockets[socket] = socket
 }
 
 func (c *Handler) OnClose(socket *gws.Conn, err error) {
 	log.Printf("conn %v close", socket.RemoteAddr())
+
+	var index int
+	for i := range c.sockets {
+		if c.sockets[i] == socket {
+			index = i
+			continue
+		}
+	}
+
+	c.sockets = append(c.sockets[:index],
+		c.sockets[index+1:])
 }
+
+// -----------------------------------------------------------------------
 
 func (c *Handler) OnPing(socket *gws.Conn, payload []byte) {
 	_ = socket.SetDeadline(time.Now().Add(c.pingInterval + c.pingWait))
@@ -93,5 +110,32 @@ func (c *Handler) OnMessage(socket *gws.Conn, message *gws.Message) {
 	socket.WriteString(msgText)
 }
 
-// private
+// use case
 // -----------------------------------------------------------------------
+
+func (c *Handler) SetChanForProductCountUpdated(ctxForCancel context.Context,
+	productsChan <-chan *domain.Product) error {
+	for {
+		select {
+		case <-ctxForCancel.Done():
+			log.Printf("bkg work canceled [product count updated]")
+			return nil
+
+		case product, closed := <-productsChan:
+			if closed {
+				log.Printf("bkg work canceled [product count updated]")
+				return nil
+			}
+
+			jsonProduct, err := json.Marshal(product)
+			if err != nil {
+				log.Printf("")
+				continue
+			}
+
+			for i := range c.sockets {
+				c.sockets[i].WriteString(string(jsonProduct))
+			}
+		}
+	}
+}
