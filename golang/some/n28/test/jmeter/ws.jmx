@@ -40,7 +40,7 @@
           <stringProp name="LoopController.loops">5</stringProp>
         </LoopController>
         <hashTree>
-          <eu.luminis.jmeter.wssampler.SingleWriteWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.SingleWriteWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.SingleWriteWebSocketSampler" testname="WebSocket Single Write Sampler" enabled="true">
+          <eu.luminis.jmeter.wssampler.SingleWriteWebSocketSampler guiclass="eu.luminis.jmeter.wssampler.SingleWriteWebSocketSamplerGui" testclass="eu.luminis.jmeter.wssampler.SingleWriteWebSocketSampler" testname="WebSocket Single Write Sampler" enabled="false">
             <boolProp name="TLS">false</boolProp>
             <stringProp name="server"></stringProp>
             <stringProp name="port">80</stringProp>
@@ -68,7 +68,7 @@
             <stringProp name="connectTimeout">20000</stringProp>
             <stringProp name="dataType">Text</stringProp>
             <boolProp name="createNewConnection">false</boolProp>
-            <stringProp name="readTimeout">6000</stringProp>
+            <stringProp name="readTimeout">999999</stringProp>
             <boolProp name="optional">false</boolProp>
           </eu.luminis.jmeter.wssampler.SingleReadWebSocketSampler>
           <hashTree/>

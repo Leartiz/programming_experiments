@@ -7,6 +7,7 @@ import (
 	"log"
 	appDto "n28/internal/app/dto"
 	"n28/internal/app/outPort"
+	"n28/internal/domain"
 	"time"
 )
 
@@ -36,6 +37,9 @@ type UseCase struct {
 	db         outPort.Database
 	msgs       outPort.Msgs
 	bkgTimeout time.Duration
+
+	productsChan chan *domain.Product
+	ctxForCancel context.Context
 }
 
 func New(ctxForInit, ctxForCancel context.Context, deps Dependencies) (*UseCase, error) {
@@ -44,14 +48,21 @@ func New(ctxForInit, ctxForCancel context.Context, deps Dependencies) (*UseCase,
 	}
 
 	uc := UseCase{
-		cache:      deps.Cache,
-		db:         deps.Db,
-		msgs:       deps.Msgs,
-		bkgTimeout: deps.BkgTimeout,
+		cache:        deps.Cache,
+		db:           deps.Db,
+		msgs:         deps.Msgs,
+		bkgTimeout:   deps.BkgTimeout,
+		productsChan: make(chan *domain.Product),
+		ctxForCancel: ctxForCancel,
 	}
 
 	go uc.asyncConsumeExternalAddedProduct(ctxForInit, ctxForCancel)
+
 	return &uc, nil
+}
+
+func (u *UseCase) InjectWs(ws outPort.Ws) error {
+	return ws.SetChanForProductCountUpdated(u.ctxForCancel, u.productsChan)
 }
 
 // public
@@ -91,6 +102,8 @@ func (u *UseCase) InsertProductNoReturning(ctx context.Context, data appDto.Inse
 		return err
 	}
 
+	u.productsChan <- product
+
 	return nil
 }
 
@@ -109,7 +122,11 @@ func (u *UseCase) asyncConsumeExternalAddedProduct(ctxForInit, ctxForCancel cont
 			log.Printf("async consume external added product [canceled]")
 			return
 
-		case product := <-ch:
+		case product, ok := <-ch:
+			if !ok {
+				log.Printf("async consume external added product [closed]")
+			}
+
 			ctx, cancel := context.WithTimeout(context.Background(), u.bkgTimeout)
 			defer cancel()
 

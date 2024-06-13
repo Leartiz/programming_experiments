@@ -52,6 +52,7 @@ func Launch(ctxForInit, ctxForCancel context.Context) error {
 	// App
 
 	ucDeps := useCase.Dependencies{
+
 		Db:         outPortDb,
 		Cache:      outPortCache,
 		Msgs:       outPortMsgs,
@@ -63,13 +64,20 @@ func Launch(ctxForInit, ctxForCancel context.Context) error {
 		return nil
 	}
 
-	// Deps For Infra
-
-	err = ws.Listen(ws.Dependencies{
+	wsHandler, err := ws.NewHandler(ws.Dependencies{
 		PingInterval: PingInterval,
 		PingWait:     PingWait,
 		ProductUc:    uc,
 	})
+	if err != nil {
+		return err
+	}
+
+	uc.InjectWs(wsHandler)
+
+	// Deps For Infra
+
+	err = ws.Listen(wsHandler)
 	if err != nil {
 		return err
 	}

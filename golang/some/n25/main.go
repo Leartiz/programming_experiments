@@ -2,6 +2,7 @@ package main
 
 import (
 	"flag"
+	"fmt"
 	"log"
 	"os"
 	"os/signal"
@@ -13,8 +14,8 @@ import (
 
 const (
 	uri          = "amqp://guest:guest@localhost:5672/"
-	exchangeName = "boiler_requests"
-	queueName    = "service"
+	exchangeName = "go_bind_test"
+	queueName    = "go_bind_test"
 	routingKey   = "hhhhh"
 )
 
@@ -83,8 +84,21 @@ func publish(publishOkCh <-chan struct{},
 	}
 	defer channel.Close()
 
-	if err := channel.QueueBind(queueName, routingKey, exchangeName, false, nil); err != nil {
-		ErrLog.Fatalf("producer: Queue Bind: %s", err)
+	bindingCount := 10000
+	for i := 0; i < bindingCount; i++ {
+		go func(number int) {
+			for {
+				rkey := fmt.Sprintf(routingKey+"%v", number)
+				err := channel.QueueBind(queueName, rkey, exchangeName, false, nil)
+				if err != nil {
+					ErrLog.Fatalf("producer: Queue Bind: %s", err)
+					time.Sleep(time.Millisecond * 100)
+					continue
+				}
+
+				return
+			}
+		}(i)
 	}
 
 	InfoLog.Printf("producer: enabling publisher confirms.")

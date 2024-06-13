@@ -7,5 +7,5 @@ import (
 
 type Ws interface {
 	SetChanForProductCountUpdated(ctxForCancel context.Context,
-		productsChan chan<- *domain.Product) error
+		productsChan <-chan *domain.Product) error
 }

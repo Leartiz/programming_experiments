@@ -56,21 +56,10 @@ fn example_4() {
     }
 }
 
-fn as_str(data: &u32) -> &str {
-    let s = format!("{}", data);
-    &s
-}
-
-fn example_5() {
-    let val :u32 = 55;
-    format!("{}", as_str(&val));
-}
-
 pub fn exec() {
     example_0();
     example_1();
     example_2();
     example_4();
-    example_5();
     //...
 }

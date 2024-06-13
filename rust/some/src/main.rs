@@ -1,15 +1,14 @@
 mod n2;
 mod n1;
 mod n3;
+mod n4;
 
 fn main() {
 
-    let idx = 2;
+    let idx = 0;
 
     let fns = [
-        n1::exec,
-        n2::exec,
-        n3::exec
+        n4::exec,
     ];
 
     fns[idx]();

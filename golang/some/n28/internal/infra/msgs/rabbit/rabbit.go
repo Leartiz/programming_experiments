@@ -68,7 +68,6 @@ func New(deps Dependencies) (*RabbitMsgs, error) {
 	consumer, err := rabbitmq.NewConsumer(
 		conn,
 		deps.QueueNameExternalAddedProducts,
-		rabbitmq.WithConsumerOptionsRoutingKey(""),
 		rabbitmq.WithConsumerOptionsExchangeName(deps.ExchangeName),
 		rabbitmq.WithConsumerOptionsExchangeDeclare,
 	)

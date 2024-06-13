@@ -4,8 +4,8 @@ import (
 	"context"
 	"encoding/json"
 	"log"
+	appDto "n28/internal/app/dto"
 	"n28/internal/app/inPort"
-	inPortDto "n28/internal/app/inPort/dto"
 	"n28/internal/domain"
 	wsDto "n28/internal/infra/ws/dto"
 	"time"
@@ -34,7 +34,7 @@ func NewHandler(deps Dependencies) (*Handler, error) {
 
 func (c *Handler) OnOpen(socket *gws.Conn) {
 	_ = socket.SetDeadline(time.Now().Add(c.pingInterval + c.pingWait))
-	c.sockets[socket] = socket
+	c.sockets = append(c.sockets, socket)
 }
 
 func (c *Handler) OnClose(socket *gws.Conn, err error) {
@@ -49,9 +49,10 @@ func (c *Handler) OnClose(socket *gws.Conn, err error) {
 	}
 
 	c.sockets = append(c.sockets[:index],
-		c.sockets[index+1:])
+		c.sockets[index+1:]...)
 }
 
+/// From Library
 // -----------------------------------------------------------------------
 
 func (c *Handler) OnPing(socket *gws.Conn, payload []byte) {
@@ -87,7 +88,7 @@ func (c *Handler) OnMessage(socket *gws.Conn, message *gws.Message) {
 			return
 		}
 
-		err = c.productUc.InsertProductNoReturning(context.Background(), inPortDto.InsertProduct{
+		err = c.productUc.InsertProductNoReturning(context.Background(), appDto.InsertProduct{
 			Name:  product.Name,
 			Desc:  product.Desc,
 			Price: product.Price,
@@ -115,27 +116,31 @@ func (c *Handler) OnMessage(socket *gws.Conn, message *gws.Message) {
 
 func (c *Handler) SetChanForProductCountUpdated(ctxForCancel context.Context,
 	productsChan <-chan *domain.Product) error {
-	for {
-		select {
-		case <-ctxForCancel.Done():
-			log.Printf("bkg work canceled [product count updated]")
-			return nil
-
-		case product, closed := <-productsChan:
-			if closed {
+	go func() {
+		for {
+			select {
+			case <-ctxForCancel.Done():
 				log.Printf("bkg work canceled [product count updated]")
-				return nil
-			}
+				return
 
-			jsonProduct, err := json.Marshal(product)
-			if err != nil {
-				log.Printf("")
-				continue
-			}
+			case product, ok := <-productsChan:
+				if !ok {
+					log.Printf("bkg work canceled [product count updated]")
+					return
+				}
 
-			for i := range c.sockets {
-				c.sockets[i].WriteString(string(jsonProduct))
+				jsonProduct, err := json.Marshal(product)
+				if err != nil {
+					log.Printf("")
+					continue
+				}
+
+				for i := range c.sockets {
+					c.sockets[i].WriteString(string(jsonProduct))
+				}
 			}
 		}
-	}
+	}()
+
+	return nil
 }

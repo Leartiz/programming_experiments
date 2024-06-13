@@ -2,10 +2,10 @@ package inPort
 
 import (
 	"context"
-	inDto "n28/internal/app/inPort/dto"
+	appDto "n28/internal/app/dto"
 )
 
 type ProductUseCase interface {
 	GetProductCount(ctx context.Context) (uint64, error)
-	InsertProductNoReturning(ctx context.Context, data inDto.InsertProduct) error
+	InsertProductNoReturning(ctx context.Context, data appDto.InsertProduct) error
 }

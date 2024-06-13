@@ -15,13 +15,7 @@ type Dependencies struct {
 	ProductUc    inPort.ProductUseCase
 }
 
-func Listen(deps Dependencies) error {
-
-	handler, err := NewHandler(deps)
-	if err != nil {
-		return err
-	}
-
+func Listen(handler *Handler) error {
 	upgrader := gws.NewUpgrader(handler, &gws.ServerOption{
 		ParallelEnabled: true,
 		Recovery:        gws.Recovery,
