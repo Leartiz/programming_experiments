@@ -143,7 +143,8 @@ struct LinkedList {
 namespace algo
 {
 
-std::vector<int> gen_vec(size_t n, int min = 0, int max = 1000) {
+std::vector<int> gen_vec(size_t n, int min = 0, int max = 1000)
+{
     std::default_random_engine e;
     static std::uniform_int_distribution<> dist(min, max);
     std::vector<int> vec; vec.reserve(n);
@@ -232,11 +233,6 @@ int main()
 
         utils::algo::bubble_sort<int, utils::compare::Gt<int>>(v);
         utils::algo::println_vec(v);
-    }
-    std::cout << std::endl;
-    {
-        std::vector<int> v{ 1, 3, 2, 4, 1, -100 };
-        utils::algo::quick_sort<int>(v);
     }
     return 0;
 }
