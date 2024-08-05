@@ -312,9 +312,5 @@ int main()
                       << std::endl;
         }
     }
-    std::cout << std::endl;
-    {
-
-    }
     return 0;
 }

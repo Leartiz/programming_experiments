@@ -1,63 +1,53 @@
-#include <stdio.h>
-#include <winsock2.h>
+#include <iostream>
+#include <vector>
+#include <string>
+#include <sstream>
+#include <map>
 
-#define PORT 18080
+using namespace std;
 
-int main() {
+class Solution {
+public:
 
-    WSADATA wsa;
-    SOCKET server_socket, client_socket;
+    // Input: mapping = [8,9,4,0,2,1,3,5,7,6],
+    //     nums = [991,338,38]
+    // Output: [338,38,991]
 
-    struct sockaddr_in server, client;
-    int addrlen = sizeof(server);
-    char hello[] = "hi man!"; // Отправляем один байт на клиента
+    vector<int> sortJumbled(vector<int>& mapping,
+                            vector<int>& nums) {
+        std::map<int, std::vector<int>> mm;
+        for (size_t i = 0; i < nums.size(); ++i) {
+            auto strNum = std::to_string(nums[i]);
+            for (size_t j = 0; j < strNum.size(); ++j)
+                strNum[j] = mapping[strNum[j] - '0'] + '0';
 
-    // Initialize Winsock
-    if (WSAStartup(MAKEWORD(2, 2), &wsa) != 0) {
-        printf("WSAStartup failed\n");
-        return 1;
-    }
 
-    // Create a socket
-    if ((server_socket = socket(AF_INET, SOCK_STREAM, 0)) == INVALID_SOCKET) {
-        printf("Socket creation failed\n");
-        return 1;
-    }
+            // ***
 
-    server.sin_family      = AF_INET;
-    server.sin_addr.s_addr = INADDR_ANY;
-    server.sin_port        = htons(PORT);
-
-    // Bind the socket
-    if (bind(server_socket, (struct sockaddr*)&server, sizeof(server)) == SOCKET_ERROR) {
-        printf("Bind failed\n");
-        return 1;
-    }
-
-    // Listen for incoming connections
-    if (listen(server_socket, 3) == SOCKET_ERROR) {
-        printf("Listen failed\n");
-        return 1;
-    }
-
-    printf("Server started, waiting for incoming connections...\n");
-
-    while(true) {
-        // Accept incoming connection
-        if ((client_socket = accept(server_socket, (struct sockaddr*)&client, &addrlen)) == INVALID_SOCKET) {
-            printf("Accept failed\n");
-            return 1;
+            int convertedVal = 0;
+            std::istringstream ss(strNum); ss >> convertedVal;
+            mm[convertedVal].push_back(nums[i]);
         }
 
-        // Send data to client
-        send(client_socket, hello, sizeof(hello), 0);
-        printf("Byte successfully sent to client\n");
+        vector<int> results;
+        results.reserve(nums.size());
+        for (auto it = mm.begin(); it != mm.end(); ++it)
+            std::copy(it->second.begin(), it->second.end(),
+                      std::back_inserter(results));
 
-        closesocket(client_socket);
+        return results;
     }
+};
 
-    closesocket(server_socket);
-    WSACleanup();
+int main()
+{
+    vector<int> mapping = { 8,9,4,0,2,1,3,5,7,6 };
+    vector<int> nums = { 991,338,38 };
+
+    Solution s;
+    const auto result = s.sortJumbled(mapping, nums);
+    for (size_t i = 0; i < result.size(); ++i)
+        std::cout << result[i] << " ";
 
     return 0;
 }

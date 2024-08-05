@@ -5,3 +5,5 @@ CONFIG -= qt
 
 SOURCES += \
         main.cpp
+
+LIBS += -lws2_32
