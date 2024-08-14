@@ -139,6 +139,25 @@ int main()
 
     // ***
 
+    {
+        struct sockaddr_in sa;
+        struct sockaddr_in6 sa6;
+
+        std::cout << "INADDR_ANY: " << INADDR_ANY << std::endl;
+        //std::cout << "in6addr_any: " << in6addr_any << std::endl;
+
+        sa.sin_addr.S_un.S_addr = INADDR_ANY;
+        sa6.sin6_addr = in6addr_any;
+    }
+
+    // ***
+
+    {
+
+    }
+
+    // ***
+
     std::cout << "[OK]" << std::endl;
 
     const auto cleanupCode = WSACleanup();
