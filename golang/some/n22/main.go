@@ -1,28 +1,5 @@
 package main
 
-<<<<<<< HEAD
-import "github.com/gin-gonic/gin"
-
-func main() {
-	r := gin.Default()
-
-	// Serves unicode entities
-	r.GET("/json", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"html": "<b>Hello, world!</b>",
-		})
-	})
-
-	// Serves literal characters
-	r.GET("/purejson", func(c *gin.Context) {
-		c.PureJSON(200, gin.H{
-			"html": "<b>Hello, world!</b>",
-		})
-	})
-
-	// listen and serve on 0.0.0.0:8080
-	r.Run(":8079")
-=======
 import (
 	"fmt"
 	"math/rand"
@@ -98,5 +75,4 @@ func main() {
 	}()
 
 	http.ListenAndServe(":8088", nil)
->>>>>>> ee62c8224e235c260521116d0b8d874a16de0dc5
 }

@@ -143,10 +143,16 @@ struct LinkedList {
 namespace algo
 {
 
-std::vector<int> gen_vec(size_t n, int min = 0, int max = 1000)
-{
-    std::default_random_engine e;
-    static std::uniform_int_distribution<> dist(min, max);
+// closed interval [...]
+size_t gen_index(size_t max) {
+    static std::default_random_engine e;
+    static std::uniform_int_distribution<int> dist(0, max);
+    return dist(e);
+}
+
+std::vector<int> gen_vec(size_t n, int min = 0, int max = 1000) {
+    static std::default_random_engine e;
+    static std::uniform_int_distribution<int> dist(min, max);
     std::vector<int> vec; vec.reserve(n);
     for (decltype(n) i = 0; i < n; ++i)
         vec.push_back(dist(e));
@@ -177,9 +183,50 @@ void bubble_sort(std::vector<T>& vec) {
     }
 }
 
-template<typename T, typename Compare = compare::Lt<T>>
-void quick_sort(std::vector<T>& vec, size_t beg = 0, size_t end = -1) {
+// -----------------------------------------------------------------------
 
+// [...]
+template<typename T, typename Compare = compare::Lt<T>>
+size_t partition_quick_sort(std::vector<T>& vec, size_t beg, size_t end) {
+
+    const auto pivot = vec[
+        (beg + end) / 2]; // Опорный элемент!
+
+    while (true) {
+
+        // -100 1 1 2 3 4
+
+        while (Compare()(vec[beg], pivot))
+            ++beg;
+
+        while (Compare()(pivot, vec[end])) // ?
+            --end;
+
+        if (beg >= end)
+            return end;
+
+        std::swap(vec[beg], vec[end]);
+        ++beg; --end;
+    }
+}
+
+/*
+
+
+
+*/
+
+// [...)
+template<typename T, typename Compare = compare::Lt<T>>
+void quick_sort(std::vector<T>& vec, size_t beg, size_t end) {
+    if (vec.size() < 2)
+        return;
+
+    if (beg >= end) return;
+
+    const auto m = partition_quick_sort<T, Compare>(vec, beg, end - 1);
+    quick_sort(vec, beg, m);
+    quick_sort(vec, m+1, end);
 }
 
 } // algo
@@ -225,14 +272,45 @@ int main()
     std::cout << std::endl;
     {
         std::vector<int> v{ 1, 3, 2, 4, 1, -100 };
-        utils::algo::bubble_sort<int>(v);
+        utils::algo::println_vec(v);
 
-        std::copy(v.begin(), v.end(),
-                  std::ostream_iterator<int>(std::cout, " "));
-        std::cout << std::endl;
+        utils::algo::bubble_sort<int>(v);
+        utils::algo::println_vec(v);
 
         utils::algo::bubble_sort<int, utils::compare::Gt<int>>(v);
         utils::algo::println_vec(v);
+    }
+    std::cout << std::endl;
+    {
+        std::vector<int> v{ 1, 3, 2, 4, 1, -100 };
+        std::cout << "v.size() = " << v.size() << std::endl;
+        utils::algo::println_vec(v);
+
+        std::cout << "lt" << std::endl;
+        utils::algo::quick_sort<int>(v, 0, v.size());
+        utils::algo::println_vec(v);
+
+        std::cout << "gt" << std::endl;
+        utils::algo::quick_sort<int, utils::compare::Gt<int>>(v, 0, v.size());
+        utils::algo::println_vec(v);
+
+        // ***
+
+        std::cout << "less" << std::endl;
+        std::sort(v.begin(), v.end(), std::less<int>());
+        utils::algo::println_vec(v);
+
+        std::cout << "greater" << std::endl;
+        std::sort(v.begin(), v.end(), std::greater<int>());
+        utils::algo::println_vec(v);
+    }
+    std::cout << std::endl;
+    {
+        for (auto i = 0; i < 5; ++i) {
+            std::cout << "index: "
+                      << utils::algo::gen_index(100)
+                      << std::endl;
+        }
     }
     return 0;
 }

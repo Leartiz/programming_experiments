@@ -4,8 +4,10 @@
         "amqp",
         "AUTOINCREMENT",
         "ctag",
+        "descr",
         "dfly",
         "gonic",
+        "ivar",
         "jbrodriguez",
         "lxzan",
         "mattn",
@@ -13,9 +15,11 @@
         "mordyovits",
         "Permessage",
         "promhttp",
+        "purejson",
         "rabbitmq",
         "rkey",
         "upgrader",
+        "vals",
         "Vhost",
         "wagslane"
     ]
