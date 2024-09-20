@@ -144,16 +144,60 @@ int main()
         struct sockaddr_in6 sa6;
 
         std::cout << "INADDR_ANY: " << INADDR_ANY << std::endl;
+
+        // ?
         //std::cout << "in6addr_any: " << in6addr_any << std::endl;
 
         sa.sin_addr.S_un.S_addr = INADDR_ANY;
         sa6.sin6_addr = in6addr_any;
+
+        std::cout << "sa.sin_addr.S_un.S_addr: " << sa.sin_addr.S_un.S_addr << std::endl;
+
+        for (int i = 0; i < 8; ++i) {
+            std::cout << "sa6.sin6_addr.u.Word[" << i << "]: "
+                      << sa6.sin6_addr.u.Word[i] << std::endl;
+        }
     }
 
     // ***
 
     {
+        auto he = gethostbyname("www.ya.ru");
+        if (!he) {
+            std::cout << "get host by name failed" << std::endl;
+        } else {
+            std::cout << "he->h_addrtype: " << he->h_addrtype << std::endl;
+            std::cout << "he->h_length: " << he->h_length << std::endl;
+            std::cout << "he->h_name: " << he->h_name << std::endl;
 
+            for (short i = 0; i < he->h_length; ++i) {
+
+                const auto bufSize = 255*sizeof(char); // !
+                char* buf = static_cast<char*>(malloc(bufSize));
+                memset(buf, 0, bufSize);
+
+                sprintf(buf, "he->h_addr_list[%d]: ", i);
+                std::cout << buf << he->h_addr_list[i] << std::endl;
+
+                memset(buf, 0, bufSize);
+                sprintf(buf, "he->h_aliases[%d]: ", i);
+                std::cout << buf << he->h_aliases[i] << std::endl;
+
+                free(buf); // !
+            }
+        }
+    }
+
+    // ***
+
+    {
+        struct addrinfo *res;
+        /*
+            - поиск имён DNS;
+            - заполняет нужные структуры.
+        */
+        getaddrinfo("www.ya.ru", "http", nullptr, &res);
+        std::cout << "res->ai_addrlen: " << res->ai_addrlen << std::endl;
     }
 
     // ***

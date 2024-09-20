@@ -13,7 +13,7 @@ public:
     //     nums = [991,338,38]
     // Output: [338,38,991]
 
-    vector<int> sortJumbled(vector<int>& mapping,
+    vector<int> sortJumbled(const vector<int>& mapping,
                             vector<int>& nums) {
         std::map<int, std::vector<int>> mm;
         for (size_t i = 0; i < nums.size(); ++i) {
