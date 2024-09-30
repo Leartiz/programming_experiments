@@ -8,7 +8,7 @@ using namespace std;
 
 class Solution {
 public:
-    std::set<int> goodSet{ 2, 3, 5 };
+    set<int> goodSet{ 2, 3, 5 };
 
     bool isUgly(const int n) {
         if (n <= 0)
@@ -57,16 +57,15 @@ public:
 int main()
 {
     Solution s;
-
-    std::vector<std::pair<int, bool>> tests{
-        { 0, false },
-        { 6, true },
-        { 1, true },
+    vector<pair<int, bool>> tests{
+        { 0,  false },
+        { 6,   true },
+        { 1,   true },
         { 14, false },
         //...
     };
     for (size_t i = 0; i < tests.size(); ++i) {
-        std::cout << s.isUgly(tests[i].first) << std::endl;
+        cout << s.isUgly(tests[i].first) << endl;
 
         assert(s.isUgly(tests[i].first)
                == tests[i].second);
