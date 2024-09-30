@@ -18,6 +18,7 @@
         "purejson",
         "rabbitmq",
         "rkey",
+        "stretchr",
         "upgrader",
         "vals",
         "Vhost",

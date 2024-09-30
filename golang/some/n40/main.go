@@ -46,6 +46,7 @@ func main() {
 
 		m := ZipMap(keys, vals)
 		fmt.Println(m)
+
 		// map[one:11 two:22 thr:33]
 	}
 }

@@ -1,0 +1,9 @@
+0. https://krkvideo1.orionnet.online/cam6489/tracks-v1/mono.m3u8
+1. https://krkvideo1.orionnet.online/cam6490/tracks-v1/mono.m3u8
+2. https://krkvideo1.orionnet.online/cam6494/tracks-v1/mono.m3u8
+3. https://krkvideo1.orionnet.online/cam6495/tracks-v1/mono.m3u8
+4. https://krkvideo1.orionnet.online/cam6497/tracks-v1/mono.m3u8
+5. https://krkvideo1.orionnet.online/cam6498/tracks-v1/mono.m3u8
+6. https://krkvideo1.orionnet.online/cam6499/tracks-v1/mono.m3u8
+7. https://krkvideo1.orionnet.online/cam6500/tracks-v1/mono.m3u8
+8. https://krkvideo1.orionnet.online/cam6503/tracks-v1/mono.m3u8
