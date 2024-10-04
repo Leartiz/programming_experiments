@@ -1,0 +1,15 @@
+apiVersion: v2
+kind: Service
+metadata: 
+ name: nodeport-goapp-service
+ namespace: lesson1-4
+spec:
+  selector:   
+    app: goapp
+  type: NodePort
+  ports: 
+  - name: http
+    port: 80
+    targetPort: 8080
+    nodePort: 30050
+    protocol: TCP
