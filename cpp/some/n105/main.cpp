@@ -5,8 +5,10 @@
 using namespace std;
 
 void printVec(const std::vector<int>& vec) {
-    for (auto& val : vec)
+    for (const auto& val : vec) {
         std::cout << val << " ";
+    }
+
     std::cout << "\n";
 }
 
@@ -28,8 +30,9 @@ public:
                     if (ratingPath[0] > rating[j]) {
                         ratingPath[1] = rating[j];
                         for (size_t k = j + 1; k < rating.size(); ++k) {
-                            if (ratingPath[1] > rating[k])
+                            if (ratingPath[1] > rating[k]) {
                                 ++resultCount;
+                            }
                         }
                     }
                 }
