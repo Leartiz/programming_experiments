@@ -1,0 +1,76 @@
+syntax = "proto3";
+
+option go_package = "./server/proto";
+
+package greet;
+
+// -----------------------------------------------------------------------
+
+service Greeter {
+    rpc SayHello(HelloRequest) returns (HelloReply);
+    rpc Ping(PingReqRes) returns (PingReqRes);
+}
+
+message HelloRequest {
+    string name = 1;
+}
+
+message HelloReply {
+    string message = 1;
+}
+
+message PingReqRes {
+    string value = 1;
+}
+
+// -----------------------------------------------------------------------
+
+service Device {
+    rpc GetIdentity(GetIdentityRequest) returns (GetIdentityResponse);
+    rpc SetNumberToRandom(Empty) returns (Empty);
+    rpc GetNumber(Empty) returns (GetNumberRespons);
+    rpc GenerateError(Empty) returns (Empty); // !
+}
+
+message Empty {} // ?
+
+message GetIdentityRequest {
+    uint64 transactionId = 1;
+    uint64 deviceId = 2;
+    string commandName = 3;
+}
+
+message GetIdentityResponse {
+    uint64 transactionId = 1;
+    uint64 deviceId = 2;
+
+    uint64 deviceType = 3;
+    uint64 serial = 4;
+}
+
+message GetNumberRespons {
+    int64 number = 1;
+}
+
+// -----------------------------------------------------------------------
+
+service Chat {
+    rpc SendMessages(stream ChatMessage) returns (ChatResponse);
+    rpc StreamMessages(ChatRequest) returns (stream ChatMessage);
+    rpc ExecuteChat(stream ChatMessage) returns (stream ChatResponse);
+}
+
+message ChatMessage {
+    string user = 1;
+    string message = 2;
+}
+
+message ChatRequest {
+    string user = 1;
+}
+
+message ChatResponse {
+    string confirmation = 1;
+}
+
+// -----------------------------------------------------------------------
