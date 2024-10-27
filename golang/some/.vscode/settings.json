@@ -3,6 +3,7 @@
         "alertmanagers",
         "amqp",
         "AUTOINCREMENT",
+        "concated",
         "ctag",
         "descr",
         "dfly",
@@ -14,6 +15,7 @@
         "mattn",
         "mlog",
         "mordyovits",
+        "nums",
         "opentelemetry",
         "otel",
         "otelhttp",
@@ -31,9 +33,13 @@
         "stdoutmetric",
         "stdouttrace",
         "stretchr",
+        "struct",
         "upgrader",
         "vals",
         "Vhost",
-        "wagslane"
+        "wagslane",
+        "горутине",
+        "горутину",
+        "Полносрезное"
     ]
 }

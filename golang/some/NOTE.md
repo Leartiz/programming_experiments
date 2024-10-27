@@ -27,6 +27,14 @@
 - n38: `errors.Is()` and `errors.As()` [here](./n38/main.go)
 - n39: some `generic`-functions [here](./n39/main.go)
 - n40: type constraint in `generic` [here](./n40/main.go)
+- 
+- n50: examples `slices` and `maps` packages [here](./n50/main.go)
+- n51: `iota` and arithmetic operations [here](./n51/main.go)
+- n52: operations with slices [here](./n52/main.go)
+- n53: stop and reset `time.Timer` [here](./n53/main.go)
+- n54: `time.AfterFunc` and behavior of `Reset` in `time.Timer` [here](./n54/main.go)
+- n55: `context.AfterFunc` and cleanup [here](./n55/main.go)
+- n56: implementation `Worker` from course task [here](./n56/main.go)
 
 ## Graceful Shutdown
 
@@ -35,7 +43,7 @@
 
 ## Logging
 
-- n18. trying to use[`lumberjack`](https://github.com/natefinch/lumberjack) [here](./n18/main.go)
+- n18. trying to use [`lumberjack`](https://github.com/natefinch/lumberjack) [here](./n18/main.go)
 - n19. trying to use [`mlog`](https://github.com/jbrodriguez/mlog) [here](./n19/main.go)
 
 ## Redis
