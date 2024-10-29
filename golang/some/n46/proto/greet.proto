@@ -1,6 +1,7 @@
 syntax = "proto3";
 
-option go_package = "./server/proto";
+//option go_package = "./server/proto";
+option go_package = "./client/proto";
 
 package greet;
 

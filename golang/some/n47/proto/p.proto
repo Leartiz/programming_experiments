@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+import "google/protobuf/any.proto";
+
+option go_package = "./p";
+
+message MessageA {
+    string text = 1;
+}
+
+message MessageB {
+    int32 number = 1;
+}
+
+message MyWrapper {
+    google.protobuf.Any anyMessage = 1;
+}

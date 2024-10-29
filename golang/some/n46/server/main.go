@@ -161,6 +161,7 @@ func main() {
 	}
 
 	grpcServer := grpc.NewServer()
+
 	pb.RegisterGreeterServer(grpcServer, &greeterServer{})
 	pb.RegisterDeviceServer(grpcServer, &deviceServer{})
 	pb.RegisterChatServer(grpcServer, &chatServer{})
