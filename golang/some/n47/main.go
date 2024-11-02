@@ -15,6 +15,9 @@ func main() {
 	fmt.Printf("ma: %v\n", ma)
 	fmt.Printf("mb: %v\n", mb)
 
+	fmt.Println("type ma:", ma.ProtoReflect().Descriptor().FullName())
+	fmt.Println("type mb:", mb.ProtoReflect().Descriptor().FullName())
+
 	// ***
 
 	mw := p.MyWrapper{}
@@ -25,9 +28,9 @@ func main() {
 
 	mw.AnyMessage = anyMessage
 	switch mw.AnyMessage.TypeUrl {
-	case "type.googleapis.com/main.MessageA":
+	case "type.googleapis.com/MessageA":
 		fmt.Printf("AAA")
-	case "type.googleapis.com/main.MessageB":
+	case "type.googleapis.com/MessageB":
 		fmt.Printf("BBB")
 
 	default:
