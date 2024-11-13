@@ -1,7 +1,9 @@
 TEMPLATE = app
-CONFIG += console
+CONFIG += console c++17
 CONFIG -= app_bundle
 CONFIG -= qt
 
-SOURCES += \
-        main.c
+INCLUDEPATH += D:\education\my\pl_cpp\libs\boost_1_82_0
+LIBS += -lws2_32 -lmswsock
+
+SOURCES += main.cpp
