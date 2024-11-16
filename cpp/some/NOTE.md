@@ -1,5 +1,7 @@
 # cpp
 
+#
+
 - n1 - `std::rotate` algorithm analysis [here](./n1/NOTE.md)
 - n2 - `std::iter_swap` [here](./n2/NOTE.md)
 - n5 - tree with no limit on node count [here](./n5/NOTE.md)
@@ -17,6 +19,7 @@
 - n67 - inheritance of multiple classes and exceptions [here](./n67/NOTE.md)
 - n72 - `std::istream:: good, eof, fail, bad` [here](./n72/NOTE.md)
 - n73 - pass `std::istream` by reference [here](./n73/NOTE.md)
+- n118 - `inet_pton` and `inet_ntop` [here](./n118/main.cpp)
 
 # tasks from leet-code
 
@@ -62,10 +65,12 @@
 - n57 - `QRegularExpression` [here](./n57/NOTE.md)
 - n64 - mac addresses `QNetworkInterface` [here](./n64/NOTE.md)
 - n66 - `QSysInfo; QHostInfo; QNetworkInterface` [here](./n66/NOTE.md)
-- n68 - `QDateTime; QThread:: sleep` [her](./n68/NOTE.md)
+- n68 - `QDateTime; QThread:: sleep` [here](./n68/NOTE.md)
 - n74 - `QThread`
 
-# + boost
+# + Boost
+
+- n116 - simple echo server on `Boost.Asio` [here](./n116/main.cpp)
 
 # + toml
 - n36 -

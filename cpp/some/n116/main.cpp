@@ -114,7 +114,7 @@ private:
 };
 
 int main() {
-    const short port{ 12345 };
+    const int16_t port{ 12345 };
     {
         const auto ep = tcp::endpoint(tcp::v4(), port);
 
