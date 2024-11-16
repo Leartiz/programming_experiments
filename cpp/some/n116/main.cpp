@@ -114,7 +114,7 @@ private:
 };
 
 int main() {
-    const short port{ 12345 };
+    const short port{ 12345 }; // !!!
     {
         const auto ep = tcp::endpoint(tcp::v4(), port);
 
@@ -141,7 +141,7 @@ int main() {
 
     try {
         boost::asio::io_context io_context;
-        Server server(io_context, port);  // Порт 12345
+        Server server(io_context, port);
         io_context.run();
 
     } catch (std::exception& e) {
