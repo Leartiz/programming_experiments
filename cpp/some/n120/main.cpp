@@ -1,19 +1,28 @@
+#include <mutex>
 #include <iostream>
-#include <thread>
 
-void run_thread() {
-    std::thread t([]{
-        while (true) {
-            std::this_thread::sleep_for(std::chrono::seconds(1));
-            std::cout << "." << '\n';
-        }
-    });
-    t.detach();
-}
+using namespace std;
 
 int main()
 {
-    run_thread();
-    std::chrono::seconds(5);
-    return 0;
+    {
+        std::mutex mx;
+        std::unique_lock<std::mutex> ll{ mx };
+        //...
+    }
+    {
+        std::recursive_mutex rmx;
+        std::unique_lock<
+            std::recursive_mutex> ll{ rmx };
+
+        //ll.lock(); // don't work!
+
+        rmx.lock();
+        rmx.lock();
+        rmx.lock();
+
+        //...
+    }
+
+    std::cout << "[OK]" << '\n';
 }

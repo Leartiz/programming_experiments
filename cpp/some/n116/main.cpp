@@ -141,7 +141,7 @@ int main() {
 
     try {
         boost::asio::io_context io_context;
-        Server server(io_context, port);  // Порт 12345
+        Server server(io_context, port);
         io_context.run();
 
     } catch (std::exception& e) {

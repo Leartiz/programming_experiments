@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: my-pv
+spec:
+  capacity:
+    storage: 10Gi  # Размер тома
+  accessModes:
+    - ReadWriteMany  # Режим доступа
+  nfs:  # Настройка NFS
+    path: /path/to/nfs  # Путь на сервере NFS
+    server: nfs-server.example.com  # Адрес сервера NFS
+  persistentVolumeReclaimPolicy: Retain  # Политика возврата
