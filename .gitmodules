@@ -1,3 +1,6 @@
 [submodule "cpp/dependencies/zen"]
 	path = cpp/dependencies/zen
 	url = https://github.com/briancairl/zen.git
+[submodule "cpp/some/n124/third_party/clickhouse"]
+	path = cpp/some/n124/third_party/clickhouse
+	url = https://github.com/ClickHouse/clickhouse-cpp.git
