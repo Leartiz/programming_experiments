@@ -1,6 +1,6 @@
 # cpp
 
-#
+# unsorted
 
 - n1 - `std::rotate` algorithm analysis [here](./n1/NOTE.md)
 - n2 - `std::iter_swap` [here](./n2/NOTE.md)
@@ -20,6 +20,7 @@
 - n72 - `std::istream:: good, eof, fail, bad` [here](./n72/NOTE.md)
 - n73 - pass `std::istream` by reference [here](./n73/NOTE.md)
 - n118 - `inet_pton` and `inet_ntop` [here](./n118/main.cpp)
+- n132 - free, member, lambda functions [here](./n132/main.cpp)
 
 # tasks from leet-code
 
