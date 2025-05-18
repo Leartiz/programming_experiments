@@ -34,20 +34,62 @@ bool f(const Widget& w)
     return true;
 }
 
+// -----------------------------------------------------------------------
+
+// trailing return type!
+//
 template <typename Container, typename Index>
 auto authAndAccess(Container& c, Index i) -> decltype(c[i])
+{
+    // some actions...
+
+    return c[i];
+}
+
+template <typename Container, typename Index>
+auto authAndAccessWithAuto(Container& c, Index i)
 {
     return c[i];
 }
 
+template <typename Container, typename Index>
+decltype(auto) authAndAccessWithDecltypeAuto(Container& c, Index i)
+{
+    return c[i];
+}
+
+// -----------------------------------------------------------------------
+
 int main()
 {
     {
+        Widget w;
+        const Widget& cw = w;
+
+        auto myWidget1 = cw; // Widget
+        myWidget1.foo();
+
+        // decltype type inference rules!
+        //
+        decltype(auto) myWidget2 = cw; // const Widget&
+        //myWidget2.foo();
+        myWidget2.const_foo();
+    }
+    {
         std::vector<int> vec;
         vec.resize(100);
+
         vec[0] = 1;
-        std::cout << "authAndAccess(vec, 0): "
-                  << authAndAccess(vec, 0) << std::endl;
+        std::cout << "vec[0]: " << vec[0] << std::endl;
+        std::cout << "authAndAccess(vec, 0): " << authAndAccess(vec, 0) << std::endl;
+
+        authAndAccess(vec, 0) = 100;
+        std::cout << "vec[0]: " << vec[0] << std::endl;
+
+        //authAndAccessWithAuto(vec, 0) = 200;
+
+        authAndAccessWithDecltypeAuto(vec, 0) = 200;
+        std::cout << "vec[0]: " << vec[0] << std::endl;
     }
     {
         const int i = 0;
