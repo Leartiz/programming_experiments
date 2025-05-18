@@ -20,6 +20,10 @@
 - n72 - `std::istream:: good, eof, fail, bad` [here](./n72/NOTE.md)
 - n73 - pass `std::istream` by reference [here](./n73/NOTE.md)
 - n118 - `inet_pton` and `inet_ntop` [here](./n118/main.cpp)
+
+
+# basics
+
 - n132 - free, member, lambda functions [here](./n132/main.cpp)
 
 # tasks from leet-code
