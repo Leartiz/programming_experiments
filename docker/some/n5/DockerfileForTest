@@ -1,0 +1,4 @@
+FROM docker:28.1.1-dind-alpine3.21
+
+COPY . .
+RUN docker build .
