@@ -5,7 +5,7 @@
 class Widget final
 {
 public:
-    explicit Widget(int value = 0) 
+    explicit Widget(int value = 0)
         : value{ value }
     {}
 
@@ -25,11 +25,11 @@ bool less(const std::unique_ptr<Widget>& lhs,
     return lhs->value < rhs->value;
 }
 
-int main() 
+int main()
 {
     {
         int x1;
-        auto x2 = 0;    
+        auto x2 = 0;
         //auto x3;
     }
     {
@@ -44,9 +44,9 @@ int main()
                                  std::string{ "223" }) << std::endl;
     }
     {
-        std::function<bool(const std::unique_ptr<Widget>&, 
+        std::function<bool(const std::unique_ptr<Widget>&,
                            const std::unique_ptr<Widget>&)> local_less = less;
-                           
+
         const auto w1 = Widget::create_ptr(5);
         const auto w2 = Widget::create_ptr(10);
 

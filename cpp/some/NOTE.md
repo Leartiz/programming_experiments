@@ -25,6 +25,7 @@
 # basics
 
 - n132 - free, member, lambda functions [here](./n132/main.cpp)
+- n133 - address from rvalue/lvalue [here](./n133/main.cpp)
 
 # tasks from leet-code
 
@@ -43,6 +44,8 @@
 - n16 - [292. Nim Game](https://leetcode.com/problems/nim-game/) [here](./n16/NOTE.md)
 - n21 - [326. Power of Three](https://leetcode.com/problems/power-of-three/) [here](./n21/NOTE.md)
 - n29 - [405. Convert a Number to Hexadecimal](https://leetcode.com/problems/convert-a-number-to-hexadecimal/) [here](./n29/NOTE.md)
+- n135 - problem [953. Verifying an Alien Dictionary](https://leetcode.com/problems/verifying-an-alien-dictionary/) solution [here](./n135/main.cpp)
+- n137 - problem [3545. Minimum Deletions for At Most K Distinct Characters](https://leetcode.com/problems/minimum-deletions-for-at-most-k-distinct-characters/) solution [here](./n137/main.cpp)
 
 # + Qt
 
