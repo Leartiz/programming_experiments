@@ -1,0 +1,1 @@
+curl -sSL "https://gitsrv.svyazcom.ru/-/snippets/20/raw/master/logging_snippet.sh" -o logging_snippet.sh
