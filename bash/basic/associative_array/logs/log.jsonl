@@ -1,0 +1,6 @@
+{"project":"local","level":"trace","pipeline":"na","sha":"na","job":"na","message":"test log string","ts":"13:21:41.926"}
+{"project":"local","level":"debug","pipeline":"na","sha":"na","job":"na","message":"test log string","ts":"13:21:41.931"}
+{"project":"local","level":"info","pipeline":"na","sha":"na","job":"na","message":"test log string","ts":"13:21:41.936"}
+{"project":"local","level":"warning","pipeline":"na","sha":"na","job":"na","message":"test log string","ts":"13:21:41.941"}
+{"project":"local","level":"error","pipeline":"na","sha":"na","job":"na","message":"test log string","ts":"13:21:41.948"}
+{"project":"local","level":"fatal","pipeline":"na","sha":"na","job":"na","message":"test log string","ts":"13:21:41.954"}
