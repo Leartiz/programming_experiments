@@ -13,3 +13,5 @@ EOF
 
 source setup_env.sh
 calculate 5 5
+
+echo $ENV
