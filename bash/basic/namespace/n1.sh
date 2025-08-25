@@ -1,3 +1,4 @@
 colors::print_env() {
-    env | LC_ALL=C sort
+    local prefix="$1"
+    env | grep "^${prefix}" | sort
 }
