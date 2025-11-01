@@ -8,3 +8,6 @@
 
 ## python
 - some [here](./python/some/NOTE.md)
+
+## lua
+- some [here](./lua/NOTE.md)

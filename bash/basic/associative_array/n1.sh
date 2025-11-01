@@ -53,6 +53,7 @@ logging::log_to_json() {
         fi
         json_output+="\"$key\":\"${log_entry[$key]}\""
     done
+    unset log_entry
 
     json_output+='}'
 

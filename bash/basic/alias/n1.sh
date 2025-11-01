@@ -2,7 +2,7 @@ __timestamp() {
     echo $(date -u +"%Y-%m-%dT%H:%M:%S%z")
 }
 
-__timestamp_
+__timestamp
 
 __context() {
     echo "proj=${CI_PROJECT_PATH:-local} \
