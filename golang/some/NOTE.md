@@ -1,60 +1,54 @@
-# go 🦿
+# Go 🦿
 
-## Unsorted. Experiments
-
-- n1: `context.*` in mock routine [here](./n1/NOTE.md)
-- n2: `context.*` on web request [here](./n2/NOTE.md)
-- n3: trying to use jwt [here](./n3/exec.go)
-- n4: stack implementation using generics [here](./n4/exec.go)
-- n5: common code separation solution [here](./n5/exec.go)
-- n6: type switches [here](./n6/exec.go)
-- n7: third party `optional.*` for json fields [here](./n7/exec.go)
-- n8: field is omitted from the object if its value is empty [here](./n8/exec.go)
-- n9: `Gin Web Framework` parameters in path [here](./n9/exec.go)
-- n10: `<nil>`
-- n11: solving some exercises [here](./n11/exec.go)
-- n12: routing (with params) in `net/http` [here](./n12/exec.go)
-- n13: routing (empty route) in `net/http` [here](./n13/exec.go)
-- n14: routing (nested `ServeMux`) in `net/http` [here](./n14/exec.go)
-- n15: `<nil>`
-
-> To start from 1-15 use [main.go](./main.go)
-
-- n21: sequential execution of assertions [here](./n21/main.go)
-- n34: `goto` and shadowing variables [here](./n34/main.go)
-- n36: study of `interface{}` or `any` [here](./n36/main.go)
-- n37: combination of errors [here](./n37/main.go)
-- n38: `errors.Is()` and `errors.As()` [here](./n38/main.go)
-- n39: some `generic`-functions [here](./n39/main.go)
-- n40: type constraint in `generic` [here](./n40/main.go)
-- 
-- n50: examples `slices` and `maps` packages [here](./n50/main.go)
-- n51: `iota` and arithmetic operations [here](./n51/main.go)
-- n52: operations with slices [here](./n52/main.go)
-- n53: stop and reset `time.Timer` [here](./n53/main.go)
-- n54: `time.AfterFunc` and behavior of `Reset` in `time.Timer` [here](./n54/main.go)
-- n55: `context.AfterFunc` and cleanup [here](./n55/main.go)
-- n56: implementation `Worker` from course task [here](./n56/main.go)
+- n21: Sequential execution of assertions - [code](./n21/main.go)
+- n22: Prometheus histogram metrics - [code](./n22/main.go)
+- n23: Gin server with Redis integration - [code](./n23/main.go)
+- n24: Simple Gin ping-pong server - [code](./n24/main.go)
+- n25: RabbitMQ message publisher - [code](./n25/main.go)
+- n26: RabbitMQ message consumer - [code](./n26/main.go)
+- n27: (not implemented)
+- n28: Clean architecture with graceful shutdown - [code](./n28/cmd/main.go)
+- n29: TLS PSK (Pre-Shared Key) implementation - [code](./n29/main.go)
+- n30: Goroutine scheduling demonstration - [code](./n30/main.go)
+- n31: WebSocket server implementation - [code](./n31/main.go)
+- n32: JSON boolean to string conversion - [code](./n32/main.go)
+- n33: Finding first negative number in array - [code](./n33/main.go)
+- n34: `goto` statement and variable shadowing - [code](./n34/main.go)
+- n35: PureJSON and JSON in Gin Web Framework - [code](./n35/main.go)
+- n36: Study of `interface{}` vs `any` - [code](./n36/main.go)
+- n37: Error combination and wrapping - [code](./n37/main.go)
+- n38: `errors.Is()` and `errors.As()` usage - [code](./n38/main.go)
+- n39: Generic functions implementation - [code](./n39/main.go)
+- n40: Type constraints in generics - [code](./n40/main.go)
+- n41: Finding minimum value in 2D array - [code](./n41/main.go)
+- n42: OpenTelemetry HTTP server instrumentation - [code](./n42/main.go)
+- n43: Generic Pair type implementation - [code](./n43/main.go)
+- n44: Generic average calculation - [code](./n44/main.go)
+- n45: Generic Map implementation - [code](./n45/main.go)
+- n46: Simple gRPC client and server - [details](./n46/NOTE.md)
+- n47: Usage of `google.protobuf.Any` type - [code](./n47/main.go)
+- n50: Examples of `slices` and `maps` packages - [code](./n50/main.go)
+- n51: `iota` and arithmetic operations - [code](./n51/main.go)
+- n52: Slice operations - [code](./n52/main.go)
+- n53: Stop and reset `time.Timer` - [code](./n53/main.go)
+- n54: `time.AfterFunc` and `Reset` behavior in `time.Timer` - [code](./n54/main.go)
+- n55: `context.AfterFunc` and cleanup - [code](./n55/main.go)
+- n56: Worker implementation from course task - [code](./n56/main.go)
+- n57: Error wrapping with `fmt.Errorf` - [code](./n57/main.go)
+- n58: Command-line flag parsing with flaggy - [code](./n58/main.go)
+- n59: PostgreSQL connection pool with pgx - [code](./n59/main.go)
+- n60: Time zero value check - [code](./n60/main.go)
 
 ## Graceful Shutdown
 
-- n16: stopping background works [here](./n16/main.go)
-- n17: stopping server handlers [here](./n17/main.go)
+- n16: Stopping background workers - [code](./n16/main.go)
+- n17: Stopping server handlers - [code](./n17/main.go)
 
 ## Logging
 
-- n18. trying to use [`lumberjack`](https://github.com/natefinch/lumberjack) [here](./n18/main.go)
-- n19. trying to use [`mlog`](https://github.com/jbrodriguez/mlog) [here](./n19/main.go)
+- n18: [`lumberjack`](https://github.com/natefinch/lumberjack) log rotation - [code](./n18/main.go)
+- n19: [`mlog`](https://github.com/jbrodriguez/mlog) logging library - [code](./n19/main.go)
 
 ## Redis
 
-- n20: launch `Redis` example (./n20/main.go)
-
-## Http Server
-
-- n35. purejson and json in `Gin Web Framework` [here](./n35/main.go)
-
-## Protobuf
-
-- n46. very simple client and server [here](./n46/NOTE.md)
-- n47. use of type `google.protobuf.Any` [here](./n47/main.go)
+- n20: Redis connection example - [code](./n20/main.go)

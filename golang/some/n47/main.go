@@ -3,7 +3,8 @@ package main
 import (
 	"fmt"
 	"log"
-	"some/n47/p"
+
+	"n47/p"
 
 	"google.golang.org/protobuf/types/known/anypb"
 )

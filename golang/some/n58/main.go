@@ -1,4 +1,8 @@
-pack
+package main
+
+import (
+	"github.com/integrii/flaggy"
+)
 
 func main() {
 	// Declare variables and their defaults

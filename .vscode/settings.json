@@ -1,4 +1,5 @@
 {
+    "files.trimTrailingWhitespace": true,
     "files.associations": {
         "array": "cpp",
         "atomic": "cpp",
@@ -72,5 +73,6 @@
         "cinttypes": "cpp",
         "typeinfo": "cpp",
         "variant": "cpp"
-    }
+    },
+    "cmake.sourceDirectory": "D:/education/my/programming_experiments/cmake/tutorial"
 }
