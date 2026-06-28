@@ -1,4 +1,4 @@
-module golang/topic/slices/min-in-2d
+module golang/play/slices-min-in-2d
 
 go 1.23.0
 
