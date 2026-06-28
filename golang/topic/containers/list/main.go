@@ -7,7 +7,7 @@ import (
 
 func printList(l *list.List) {
 	for e := l.Front(); e != nil; e = e.Next() {
-		fmt.Printf("%v -> ", e.Value)
+		fmt.Printf("%v -> ", e.Value.(string))
 	}
 	fmt.Printf("nil\n")
 }
