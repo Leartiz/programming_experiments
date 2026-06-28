@@ -1,4 +1,4 @@
-module reschedule
+module golang/topic/gocron/reschedule
 
 go 1.24.6
 

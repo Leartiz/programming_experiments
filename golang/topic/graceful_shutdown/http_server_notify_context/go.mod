@@ -1,4 +1,4 @@
-module http_server_notify_context
+module golang/topic/graceful_shutdown/http_server_notify_context
 
 go 1.24.0
 

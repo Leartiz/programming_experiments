@@ -1,4 +1,4 @@
-module http_server
+module golang/topic/graceful_shutdown/http_server
 
 go 1.24.6
 

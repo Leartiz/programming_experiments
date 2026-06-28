@@ -1,4 +1,4 @@
-module with_errgroup
+module golang/topic/graceful_shutdown/with_errgroup
 
 go 1.24.6
 

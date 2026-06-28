@@ -1,10 +1,10 @@
 # Programming experiments 🎲
 
-## cpp 
+## cpp
 - some [here](./cpp/some/NOTE.md)
 
 ## golang
-- some [here](./golang/some/NOTE.md)
+- [here](./golang/README.md)
 
 ## python
 - some [here](./python/some/NOTE.md)
