@@ -5,6 +5,7 @@
 - `topic/` - language, stdlib, patterns
 - `play/` - libraries and integrations (gin, grpc, redis, …)
 - `course/` - exercise solutions
+- `leetcode/` - LeetCode problems
 
 ## New experiment
 
