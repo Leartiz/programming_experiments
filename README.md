@@ -1,7 +1,7 @@
 # Programming experiments 🎲
 
 ## cpp
-- some [here](./cpp/some/NOTE.md)
+- [here](./cpp/README.md) (legacy: [index](./cpp/legacy/NOTE.md))
 
 ## golang
 - [here](./golang/README.md)
