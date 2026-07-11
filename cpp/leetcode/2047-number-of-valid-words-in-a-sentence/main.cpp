@@ -1,3 +1,7 @@
+// https://leetcode.com/problems/number-of-valid-words-in-a-sentence/
+
+#include <iostream>
+#include <string>
 #include <string_view>
 
 using namespace std;
@@ -25,10 +29,10 @@ public:
                 advance(curTok, 1);
                 continue;
             }
-            
+
             if (*curTok == '-') {
                 advance(curTok, 1);
-                if (curTok == sub.end()) { 
+                if (curTok == sub.end()) {
                     return false;
                 }
                 if (*curTok == '!' || *curTok == '.' || *curTok == ',' || *curTok == '-') {
@@ -67,26 +71,27 @@ public:
             }
 
             begSubToken = it;
-            decltype(it) endSubToken;
 
             while (it != sentence.end()) {
                 if (*it == ' ') {
-                    endSubToken = it;
                     break;
                 }
                 advance(it, 1);
             }
 
-            if (isValid(string_view(begSubToken, endSubToken))) {
+            if (isValid(string_view(&*begSubToken, static_cast<size_t>(it - begSubToken)))) {
                 ++c;
             }
 
-            advance(it, 1);
+            if (it != sentence.end()) {
+                advance(it, 1);
+            }
         }
         return c;
     }
 };
 
 int main() {
-
+    Solution s;
+    std::cout << s.countValidWords("cat dog cat") << '\n'; // expect 3
 }

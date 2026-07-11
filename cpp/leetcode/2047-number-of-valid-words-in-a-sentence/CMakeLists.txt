@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.16)
+project(number_of_valid_words_in_a_sentence LANGUAGES CXX)
+
+add_executable(number_of_valid_words_in_a_sentence main.cpp)
+
+set_property(TARGET number_of_valid_words_in_a_sentence PROPERTY CXX_STANDARD 17)
