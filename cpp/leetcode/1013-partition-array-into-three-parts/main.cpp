@@ -1,3 +1,5 @@
+// https://leetcode.com/problems/partition-array-into-three-parts-with-equal-sum/
+
 #include <iostream>
 #include <vector>
 
@@ -107,5 +109,7 @@ public:
 
 int main() {
     Solution s;
-    std::cout << s.canThreePartsEqualSum({0,2,1,-6,6,-7,9,1,2,0,1}) << std::endl;
+    std::cout << std::boolalpha
+              << s.canThreePartsEqualSum({0, 2, 1, -6, 6, -7, 9, 1, 2, 0, 1})
+              << '\n'; // expect true
 }
