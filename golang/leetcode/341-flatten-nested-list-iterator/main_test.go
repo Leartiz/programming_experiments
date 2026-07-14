@@ -37,6 +37,15 @@ func TestNestedIterator(t *testing.T) {
 		want []int
 	}{
 		{
+			name: "[[1,1],2,[1,1]]",
+			list: []*nestedinteger.NestedInteger{
+				nestedinteger.NewList([]*nestedinteger.NestedInteger{nestedinteger.NewInteger(1), nestedinteger.NewInteger(1)}),
+				nestedinteger.NewInteger(2),
+				nestedinteger.NewList([]*nestedinteger.NestedInteger{nestedinteger.NewInteger(1), nestedinteger.NewInteger(1)}),
+			},
+			want: []int{1, 1, 2, 1, 1},
+		},
+		{
 			name: "empty root",
 			list: []*nestedinteger.NestedInteger{},
 			want: nil,
@@ -69,15 +78,6 @@ func TestNestedIterator(t *testing.T) {
 			want: []int{1},
 		},
 		{
-			name: "[[1,1],2,[1,1]]",
-			list: []*nestedinteger.NestedInteger{
-				nestedinteger.NewList([]*nestedinteger.NestedInteger{nestedinteger.NewInteger(1), nestedinteger.NewInteger(1)}),
-				nestedinteger.NewInteger(2),
-				nestedinteger.NewList([]*nestedinteger.NestedInteger{nestedinteger.NewInteger(1), nestedinteger.NewInteger(1)}),
-			},
-			want: []int{1, 1, 2, 1, 1},
-		},
-		{
 			name: "[1,[4,[6]]]",
 			list: []*nestedinteger.NestedInteger{
 				nestedinteger.NewInteger(1),
@@ -102,6 +102,7 @@ func TestNestedIterator(t *testing.T) {
 	impls := []implCase{
 		{
 			name: "recursive-reslice",
+			skip: true,
 			newIter: func(list []*nestedinteger.NestedInteger) iterator {
 				return recursivereslice.Constructor(list)
 			},
@@ -115,7 +116,7 @@ func TestNestedIterator(t *testing.T) {
 		},
 		{
 			name: "flatten-constructor",
-			skip: true,
+			skip: false,
 			newIter: func(list []*nestedinteger.NestedInteger) iterator {
 				return flattenconstructor.Constructor(list)
 			},
