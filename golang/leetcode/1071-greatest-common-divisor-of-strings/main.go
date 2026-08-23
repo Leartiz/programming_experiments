@@ -8,6 +8,10 @@ import (
 // https://leetcode.com/problems/greatest-common-divisor-of-strings/
 
 func modStr(str1 string, str2 string) string {
+	if len(str2) == 0 {
+		panic("mod by empty")
+	}
+
 	countFound := 0
 	for {
 		res := strings.Index(str1[len(str2)*countFound:], str2)
