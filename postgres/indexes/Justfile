@@ -1,0 +1,11 @@
+# Linux/macOS: default sh; Windows: PowerShell
+set windows-shell := ["powershell.exe", "-NoLogo", "-Command"]
+
+up:
+    docker compose up -d
+
+down:
+    docker compose down
+
+psql:
+    docker compose exec postgres psql -U postgres -d postgres

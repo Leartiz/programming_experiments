@@ -1,0 +1,15 @@
+# Linux/macOS: default sh; Windows: PowerShell
+set windows-shell := ["powershell.exe", "-NoLogo", "-Command"]
+
+compose := "../../docker-compose.yml"
+
+setup:
+    docker compose -f {{compose}} exec -T postgres psql -U postgres -d postgres -f /work/btree/basics/01_setup.sql
+
+explain:
+    docker compose -f {{compose}} exec -T postgres psql -U postgres -d postgres -f /work/btree/basics/02_explain.sql
+
+demo:
+    docker compose -f {{compose}} up -d
+    just setup
+    just explain
