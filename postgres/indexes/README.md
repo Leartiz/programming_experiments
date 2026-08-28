@@ -1,10 +1,10 @@
-# postgres/indexes
+# Indexes 📇
 
-Hands-on по типам индексов. Postgres на **5433**, docker + just.
+Hands-on по типам индексов.
 
 ```bash
 cd postgres/indexes
-just up
+just up # Postgres на 5433
 ```
 
 ## Layout
