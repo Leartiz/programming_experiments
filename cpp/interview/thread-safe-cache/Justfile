@@ -1,0 +1,12 @@
+# Linux/macOS: default sh; Windows: PowerShell
+set windows-shell := ["powershell.exe", "-NoLogo", "-Command"]
+
+exe := if os() == "windows" { "build/Debug/thread-safe-cache.exe" } else { "build/thread-safe-cache" }
+
+build:
+    cmake -B build
+    cmake --build build
+
+run: build
+    {{exe}}
+
