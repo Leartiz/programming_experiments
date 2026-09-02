@@ -1,5 +1,7 @@
 # Programming experiments 🎲
 
+[Общий backlog](./TODO.md)
+
 ## cpp
 
 ```
@@ -15,6 +17,12 @@
 
 ## golang
 - [here](./golang/README.md)
+
+## os
+- [here](./os/README.md)
+
+## postgres
+- [here](./postgres/README.md) - SQL, индексы, tx ([TODO](./postgres/TODO.md))
 
 ## k8s
 - [here](./k8s/README.md)
